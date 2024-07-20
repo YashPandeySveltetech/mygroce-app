@@ -50,8 +50,8 @@ export default function Home({ homepageData }) {
     await apiRequest
       .category()
       .then((res) => {
-        console.log(res,"myresult");
-        setCategoryList(res?.data?.data)
+        console.log(res,"myresult"); 
+        setCategoryList(res?.data)
     
       })
       .catch((err) => {
@@ -76,7 +76,7 @@ export default function Home({ homepageData }) {
           />
         )}
         <CategorySection
-          categories={categoryList}
+          categories={homepage.homepage_categories}
           adsOne={homepage.threeColFirstBanner}
           adsTwo={homepage.threeColSecondBanner}
           adsThree={homepage.threeColThirdBanner}

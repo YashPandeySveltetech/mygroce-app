@@ -2,6 +2,7 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import apiRequest from "../../../utils/apiRequest";
 import languageModel from "../../../utils/languageModel";
 import ProductCardRowStyleOne from "../Helpers/Cards/ProductCardRowStyleOne";
 import ProductCardStyleOne from "../Helpers/Cards/ProductCardStyleOne";
@@ -51,6 +52,36 @@ export default function AllProductPage({ response, sellerInfo }) {
   const volumeHandler = (value) => {
     setVolume(value);
   };
+
+  const[subCategoryList,setSubCategoryList] = useState([])
+
+  const productSubcategory  = async () => {
+    
+    await apiRequest
+      .productBysubcategory()
+      .then((res) => {
+        console.log(Subres,"Submyresult");
+        setSubCategoryList(res?.data)
+        
+      })
+      .catch((err) => {
+        
+        
+      });
+  };
+
+
+  useEffect(()=>{
+    productSubcategory()
+  },[])
+
+
+
+
+  
+  
+console.log(products,'products');
+
   const varientHandler = (e) => {
     const { name } = e.target;
     const filterVariant =

@@ -438,7 +438,7 @@ export default function ProductCardStyleOne({ datas }) {
                   </defs>
                 </svg>
               </span>
-              {/* <span className="text-base font-semibold">Add To Cart</span> */}
+              <span className="text-base font-semibold">Add To Cart</span>
             </div>
           </button>
         </div>

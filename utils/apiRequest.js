@@ -36,6 +36,18 @@ export default {
       url: "category/get-sub-category",
     }),
 
+  productBysubcategory: (id) =>
+    instanceNew({
+      method: "GET",
+      url: `category/get-product-by-subcategory/${id}`,
+    }),
+
+  productById: (id) =>
+    instanceNew({
+      method: "GET",
+      url: `category/get-product/${id}`,
+    }),
+
   login: (data) =>
     instance({
       method: "POST",
