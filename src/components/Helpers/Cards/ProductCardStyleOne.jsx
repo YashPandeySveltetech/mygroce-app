@@ -206,14 +206,28 @@ export default function ProductCardStyleOne({ datas }) {
 	// }
 	//   };
 
-	const addToCart = async ({ quantity, productId, userId }) => {
-		console.log('first', quantity, productId, userId);
+	const addToCart = async ({
+		quantity,
+		productId,
+		userId,
+		price,
+		productName,
+		productImage,
+	}) => {
+		// console.log('first', quantity, productId, userId,price,productName,productImage);
 		if (true) {
-		  // setArWishlist(true);
-		  apiRequest.addToCart({  quantity, productId, userId });
-		  // dispatch(fetchWishlist());
+			// setArWishlist(true);
+			apiRequest.addToCart({
+				quantity,
+				productId,
+				userId,
+				price,
+				productName,
+				productImage,
+			});
+			// dispatch(fetchWishlist());
 		} else {
-		  router.push("/login");
+			router.push('/login');
 		}
 	};
 
@@ -433,6 +447,9 @@ export default function ProductCardStyleOne({ datas }) {
 								quantity: 3,
 								productId: datas._id,
 								userId: '66a125927b76f73141806db6',
+								price: datas?.price,
+								productName: datas.productName,
+								productImage: datas?.image,
 							})
 						}
 						type='button'
@@ -579,6 +596,9 @@ export default function ProductCardStyleOne({ datas }) {
 												quantity: 3,
 												productId: datas._id,
 												userId: '66a125927b76f73141806db6',
+												price: datas?.price,
+												productName: datas.productName,
+												productImage: datas?.image,
 											})
 										}
 										className='w-full bg-green-500 text-white py-3 rounded-lg mt-4'

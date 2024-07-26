@@ -1,7 +1,6 @@
 /** @format */
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import auth from '../../utils/auth';
 //constant
 const CART = 'CART';
 //intialState
@@ -12,17 +11,12 @@ const initialState = {
 //fetch data from api
 export const fetchCart = createAsyncThunk('CART/fetchCart', async () => {
 	if (true) {
-		const res = await fetch(
-			`${process.env.NEXT_PUBLIC_BASE_URL}api/cart?token=${
-				auth().access_token
-			}`,
-			{
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			}
-		);
+		const res = await fetch(``, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
 		const data = await res.json();
 		return data;
 	}
