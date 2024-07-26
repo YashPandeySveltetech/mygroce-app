@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import languageModel from "../../../utils/languageModel";
@@ -143,7 +142,7 @@ export default function About({ aboutData }) {
             <div className="w-full min-h-[665px] lg:flex lg:space-x-12 items-center pb-10 lg:pb-0">
               <div className="lg:w-1/2 w-full h-[560px] rounded overflow-hidden my-5 lg:my-0 relative">
                 <div className="absolute left-0 top-0 ">
-                  <Image
+                  <img
                     width={375}
                     height={470}
                     src={
@@ -155,7 +154,7 @@ export default function About({ aboutData }) {
                   />
                 </div>
                 <div className="absolute right-0 bottom-0">
-                  <Image
+                  <img
                     width={333}
                     height={403}
                     src={
@@ -237,7 +236,7 @@ export default function About({ aboutData }) {
                       </div>
                       <div className="flex items-center space-x-2.5 mt-3">
                         <div className="w-[50px] h-[50px] rounded-full overflow-hidden relative">
-                          <Image
+                          <img
                             layout="fill"
                             src={`${process.env.NEXT_PUBLIC_BASE_URL + item.image
                               }`}

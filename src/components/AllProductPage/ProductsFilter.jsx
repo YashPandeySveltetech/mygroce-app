@@ -1,11 +1,13 @@
 // import InputRange from "react-input-range";
 // import "react-input-range/lib/css/index.css";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
 import apiRequest from "../../../utils/apiRequest";
 import languageModel from "../../../utils/languageModel";
 import Checkbox from "../Helpers/Checkbox";
+
 export default function ProductsFilter({
   categories,
   categoryHandler,
@@ -69,8 +71,14 @@ console.log(_id,'id');
               {subCategoryList &&
                 subCategoryList.length > 0 &&
                 subCategoryList.map((item, i) => (
-                  
-                  <li key={i} onClick = {()=>getProduct({...item})} className="item mb-5">
+                  <Link
+                  href={{
+                    pathname: "/products",
+                    query: { category: "vegetable" ,id:item._id},  
+                  }}
+                  passhref legacyBehavior
+                > 
+                  <li key={i} onClick = {()=>getProduct({...item})} className="item hover:scale-110 cursor-pointer hover:bg-green-300 p-2 rounded	 mb-5">
                     <div className="flex justify-between items-center">
                       <div className="flex space-x-[14px] items-center">
                         <div>
@@ -92,6 +100,7 @@ console.log(_id,'id');
                       </div>
                     </div>
                   </li>
+                  </Link>
                 ))}
             </ul>
           </div>

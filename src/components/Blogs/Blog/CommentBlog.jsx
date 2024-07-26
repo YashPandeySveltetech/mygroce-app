@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import apiRequest from "../../../../utils/apiRequest";
+import languageModel from "../../../../utils/languageModel";
 import InputCom from "../../Helpers/InputCom";
 import LoaderStyleOne from "../../Helpers/Loaders/LoaderStyleOne";
-import Image from "next/image";
-import apiRequest from "../../../../utils/apiRequest";
-import { toast } from "react-toastify";
-import languageModel from "../../../../utils/languageModel";
 export default function CommentBlog({ comments, blog, fetchComments }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -139,7 +138,7 @@ export default function CommentBlog({ comments, blog, fetchComments }) {
                   <div className="comment-author flex justify-between items-center mb-3">
                     <div className="flex space-x-3 items-center">
                       <div className="w-[50px] h-[50px] rounded-full overflow-hidden relative">
-                        <Image
+                        <img
                           layout="fill"
                           src={`/assets/images/comment-user-1.png`}
                           alt=""
@@ -171,7 +170,7 @@ export default function CommentBlog({ comments, blog, fetchComments }) {
                         <div className="comment-author  mb-3">
                           <div className="flex space-x-3 items-center">
                             <div className="w-[50px] h-[50px] rounded-full overflow-hidden relative">
-                              <Image
+                              <img
                                 layout="fill"
                                 src={`/assets/images/comment-user-2.png`}
                                 alt=""

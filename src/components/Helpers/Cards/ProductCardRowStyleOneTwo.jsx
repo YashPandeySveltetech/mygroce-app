@@ -1,5 +1,4 @@
 import axios from "axios";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -231,7 +230,7 @@ export default function ProductCardRowStyleOneTwo({ className, datas }) {
     >
       <div className="flex space-x-5 items-center w-full h-full p-[16px]">
         <div className="w-1/3 h-full relative">
-          <Image
+          <img
             layout="fill"
             objectFit="scale-down"
             src={`${datas.image}`}

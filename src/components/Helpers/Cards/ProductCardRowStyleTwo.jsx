@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -151,7 +150,7 @@ export default function ProductCardRowStyleTwo({ className, datas }) {
       <div className="w-full h-[105px] bg-white border border-primarygray px-5 ">
         <div className="w-full h-full flex space-x-5 justify-center items-center">
           <div className="w-[75px] h-full relative">
-            <Image
+            <img
               layout="fill"
               objectFit="scale-down"
               src={`${datas.image}`}

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 // import PasswordSvg from "./PasswordSvg";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import apiRequest from "../../../../../utils/apiRequest";
 import auth from "../../../../../utils/auth";
-import { toast } from "react-toastify";
 import languageModel from "../../../../../utils/languageModel";
-import { useSelector } from "react-redux";
-import Image from "next/image";
 
 export default function PasswordTab() {
   const { websiteSetup } = useSelector((state) => state.websiteSetup);
@@ -340,7 +339,7 @@ export default function PasswordTab() {
           {/*<PasswordSvg />*/}
           {sideImg && (
             <div className="w-[310px] h-[320px] relative">
-              <Image
+              <img
                 layout="fill"
                 objectFit="scale-down"
                 src={process.env.NEXT_PUBLIC_BASE_URL + sideImg}

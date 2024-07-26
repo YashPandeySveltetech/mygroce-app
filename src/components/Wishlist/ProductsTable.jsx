@@ -1,5 +1,4 @@
 import { useRouter } from "next/dist/client/router";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -130,7 +129,7 @@ export default function ProductsTable({ className, products }) {
                   <td className="pl-10  py-4  w-[380px] ">
                     <div className="flex space-x-6 items-center">
                       <div className="w-[80px] h-[80px] rounded overflow-hidden flex justify-center items-center border border-[#CBECD9] relative">
-                        <Image
+                        <img
                           layout="fill"
                           src={`${process.env.NEXT_PUBLIC_BASE_URL +
                             item.product.thumb_image

@@ -1,9 +1,8 @@
-import Image from "next/image";
 import { useEffect, useState } from "react";
+import languageModel from "../../../utils/languageModel";
 import settings from "../../../utils/settings";
 import InputQuantityCom from "../Helpers/InputQuantityCom";
 import CheckProductIsExistsInFlashSale from "../Shared/CheckProductIsExistsInFlashSale";
-import languageModel from "../../../utils/languageModel";
 
 export default function ProductsTable({
   className,
@@ -96,7 +95,7 @@ export default function ProductsTable({
                   <td className="pl-10  py-4  w-[380px]">
                     <div className="flex space-x-6 items-center">
                       <div className="w-[80px] h-[80px] rounded overflow-hidden flex justify-center items-center border border-[#CBECD9] relative">
-                        <Image
+                        <img
                           layout="fill"
                           src={`${
                             process.env.NEXT_PUBLIC_BASE_URL +

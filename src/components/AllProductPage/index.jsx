@@ -1,5 +1,6 @@
 import axios from "axios";
-import Image from "next/image";
+import { useRouter } from 'next/router';
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import apiRequest from "../../../utils/apiRequest";
@@ -52,16 +53,18 @@ export default function AllProductPage({ response, sellerInfo }) {
   const volumeHandler = (value) => {
     setVolume(value);
   };
-
   const[subCategoryList,setSubCategoryList] = useState([])
-
+  const[productList,setProductList] = useState([])
+  const router = useRouter();
+  const { id } = router.query;
   const productSubcategory  = async () => {
-    
+    console.log('call toh ho rha hai');
     await apiRequest
-      .productBysubcategory()
+      .productBysubcategory(id)
       .then((res) => {
-        console.log(Subres,"Submyresult");
-        setSubCategoryList(res?.data)
+        // console.log(res?.data?.data,"Submyresult");
+        setProductList(res?.data?.data)
+        // setSubCategoryList(res?.data)
         
       })
       .catch((err) => {
@@ -72,8 +75,9 @@ export default function AllProductPage({ response, sellerInfo }) {
 
 
   useEffect(()=>{
+    console.log(' yaha toh call toh ho rha hai');
     productSubcategory()
-  },[])
+  },[id])
 
 
 
@@ -167,7 +171,28 @@ console.log(products,'products');
   };
 
   const [filterToggle, setToggle] = useState(false);
-  // const param=usePa
+
+
+//   useEffect(()=>{
+//     console.log(id,'id');
+//     if(id){
+//       getProductByCategories()
+
+//     }
+//   },[id])
+
+// const getProductByCategories=async()=>{
+//   await apiRequest
+//     .getProductByCategories()
+//     .then((res) => {
+//       console.log(res,"mySub category result");
+//       // setSubCategoryList(res?.data?.data)
+  
+//     })
+//     .catch((err) => {
+      
+//     });
+// }
 
   useEffect(() => {
     setProducts(response.data && response.data.products.data);
@@ -510,7 +535,7 @@ console.log(products,'products');
                 <div className="saller-logo mt-5 sm:mt-5">
                   <div className="flex sm:justify-center justify-start">
                     <div className="w-[170px] h-[170px] flex justify-center items-center rounded-full bg-white relative mb-1 overflow-hidden">
-                      <Image
+                      <img
                         layout="fill"
                         objectFit="scale-down"
                         src={`${process.env.NEXT_PUBLIC_BASE_URL +
@@ -733,15 +758,15 @@ console.log(products,'products');
                     </svg>
                   </button>
                 </div>
-                {products && cardViewStyle === "col" && (
+                {productList && cardViewStyle === "col" && (
                   <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1  xl:gap-[30px] gap-5 mb-[40px]">
                     <DataIteration
-                      datas={products && products}
+                      datas={productList && productList}
                       startLength={0}
                       endLength={
-                        products && products.length >= 6
+                        productList && productList.length >= 6
                           ? 6
-                          : products && products.length
+                          : productList && productList.length
                       }
                     >
                       {({ datas }) => (

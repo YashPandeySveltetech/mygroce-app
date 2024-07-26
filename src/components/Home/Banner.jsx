@@ -1,6 +1,5 @@
 // import Image from "next/image";
 // import Link from "next/link";
-import Image from "next/image";
 import Link from "next/link";
 import ShopNowBtn from "../Helpers/Buttons/ShopNowBtn";
 import SimpleSlider from "../Helpers/SliderCom";
@@ -60,7 +59,7 @@ export default function Banner({ className, sliders = [], services = [] }) {
                           </Link>
                         </div>
                         <div className="xl:w-[626px] w-full mt-5 xl:mt-0 xl:h-full h-[400px] relative">
-                          <Image
+                          <img
                             layout="fill"
                             objectFit="contain"
                             src={process.env.NEXT_PUBLIC_BASE_URL + item.image}

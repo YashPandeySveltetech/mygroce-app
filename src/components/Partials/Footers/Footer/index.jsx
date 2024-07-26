@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -72,7 +71,7 @@ export default function Footer({ settings, contact }) {
                   legacyBehavior>
                   <a>
                     {settings && (
-                      <Image
+                      <img
                         width="153"
                         height="44"
                         objectFit="scale-down"
@@ -318,7 +317,7 @@ export default function Footer({ settings, contact }) {
               <Link href="#" passHref
                 legacyBehavior>
                 <a>
-                  <Image
+                  <img
                     width="318"
                     height="28"
                     src={`${process.env.NEXT_PUBLIC_BASE_URL +

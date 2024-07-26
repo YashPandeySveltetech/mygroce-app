@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Image from "next/image";
 // import settings from "../../utils/settings";
 
 function Maintain() {
@@ -19,7 +18,7 @@ function Maintain() {
           <div className=" text-center">
             <div className="mb-5">
               {maintain && (
-                <Image
+                <img
                   width="153"
                   height="44"
                   objectFit="scale-down"

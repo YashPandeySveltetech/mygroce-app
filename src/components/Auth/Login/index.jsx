@@ -7,13 +7,12 @@ import InputCom from "../../Helpers/InputCom";
 import LoaderStyleOne from "../../Helpers/Loaders/LoaderStyleOne";
 import Layout from "../../Partials/Layout";
 // import Thumbnail from "./Thumbnail";
-import Image from "next/image";
 import OtpInput from 'react-otp-input';
 import { useDispatch, useSelector } from "react-redux";
 import isAuth from "../../../../Middleware/isAuth";
 import languageModel from "../../../../utils/languageModel";
 import { fetchWishlist } from "../../../store/wishlistData";
-const SEND = ({ action, des, btn }) => {
+const SEND = ({ action, des, btn,min,max }) => {
   return (
     <div>
       <p className="text-xs text-qblack">{des}</p>
@@ -67,7 +66,7 @@ function Login() {
     setLoading(true);
     await apiRequest
       .login({
-        email: email,
+        mobile: email,
         password: password,
       })
       .then((res) => {
@@ -143,10 +142,14 @@ function Login() {
                 <div className="input-area">
                   <div className="input-item mb-5">
                     <InputCom
-                      placeholder={langCntnt && langCntnt.Email}
-                      label={langCntnt && langCntnt.Email_Address + "*"}
+                      // placeholder={langCntnt && langCntnt.Email}
+                      placeholder="Enter Your Mobile Number"
+                      // label={langCntnt && langCntnt.Email_Address + "*"}
+                      label="Enter Your Mobile Number"
                       name="email"
-                      type="email"
+                      type="number"
+                      max={9999999999}
+                      min="1000000000"
                       inputClasses="h-[50px]"
                       inputHandler={(e) => setEmail(e.target.value)}
                       value={email}
@@ -315,7 +318,7 @@ function Login() {
                 style={{ top: "calc(50% - 258px)" }}
               >
                 {imgThumb && (
-                  <Image
+                  <img
                     width={608}
                     height={480}
                     src={`${process.env.NEXT_PUBLIC_BASE_URL + imgThumb.image}`}

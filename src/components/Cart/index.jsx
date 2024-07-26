@@ -1,14 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import apiRequest from "../../../utils/apiRequest";
 import auth from "../../../utils/auth";
+import languageModel from "../../../utils/languageModel";
 import settings from "../../../utils/settings";
 import { fetchCart } from "../../store/Cart";
 import CheckProductIsExistsInFlashSale from "../Shared/CheckProductIsExistsInFlashSale";
-import languageModel from "../../../utils/languageModel";
 
 export default function Cart({ className }) {
   const { websiteSetup } = useSelector((state) => state.websiteSetup);
@@ -171,7 +170,7 @@ export default function Cart({ className }) {
                   >
                     <div className="flex space-x-[6px] justify-center items-center px-4 my-[20px]">
                       <div className="w-[65px] h-full relative">
-                        <Image
+                        <img
                           layout="fill"
                           src={`${
                             process.env.NEXT_PUBLIC_BASE_URL +

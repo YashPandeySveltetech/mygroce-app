@@ -1,9 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ThinBag from "../../../Helpers/icons/ThinBag";
-import Navbar from "../../Headers/Header/Navbar";
 import TopBar from "../../Headers/Header/TopBar";
 import Middlebar from "../Header/Middlebar";
 
@@ -43,7 +41,7 @@ export default function HeaderTwo({ className, drawerAction, settings }) {
             <Link href="/" passHref legacyBehavior>
               <a>
                 {settings && (
-                  <Image
+                  <img
                     width="152"
                     height="36"
                     src={`${process.env.NEXT_PUBLIC_BASE_URL + settings.logo}`}
@@ -65,7 +63,7 @@ export default function HeaderTwo({ className, drawerAction, settings }) {
           </div>
         </div>
       </div>
-      <Navbar className="quomodo-shop-nav-bar lg:block hidden" />
+      {/* <Navbar className="quomodo-shop-nav-bar lg:block hidden" /> */}
     </header>
   );
 }

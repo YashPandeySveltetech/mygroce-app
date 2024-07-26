@@ -77,7 +77,7 @@ export default function ProductsAds({
                     </div>
                   </div>
                 </div>
-                {/*<Image*/}
+                {/*<img*/}
                 {/*  layout="fill"*/}
                 {/*  objectFit="scale-down"*/}
                 {/*  src={`${ads[0]}`}*/}
@@ -147,7 +147,7 @@ export default function ProductsAds({
                       </div>
                     </div>
                   </div>
-                  {/*<Image*/}
+                  {/*<img*/}
                   {/*  layout="fill"*/}
                   {/*  objectFit="scale-down"*/}
                   {/*  src={`${ads[1]}`}*/}

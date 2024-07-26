@@ -1,5 +1,4 @@
 import axios from "axios";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
@@ -468,7 +467,7 @@ function BecomeSaller() {
                     <div className="relative">
                       <div className="sm:w-[198px] sm:h-[198px] w-[199px] h-[199px] rounded-full overflow-hidden relative">
                         {defaultLogo && (
-                          <Image
+                          <img
                             objectFit="cover"
                             layout="fill"
                             src={
@@ -524,7 +523,7 @@ function BecomeSaller() {
                       <div className="w-full h-[120px] object-cover">
                         <div className="w-full h-full rounded-lg overflow-hidden relative">
                           {defaultCover && (
-                            <Image
+                            <img
                               layout="fill"
                               src={
                                 coverImg

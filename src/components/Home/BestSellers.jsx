@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 export default function BestSellers({ className, sallers = [] }) {
   return (
@@ -16,7 +15,7 @@ export default function BestSellers({ className, sallers = [] }) {
               >
                 <div className="sm:w-[170px] sm:h-[170px] w-[140px] h-[140px] shadow rounded-full bg-white flex justify-center items-center overflow-hidden mb-2 relative">
                   <div className="w-full h-full relative transform scale-100 group-hover:scale-110 transition duration-300 ease-in-out">
-                    <Image
+                    <img
                       layout="fill"
                       objectFit="scale-down"
                       src={`${process.env.NEXT_PUBLIC_BASE_URL + saller.logo}`}

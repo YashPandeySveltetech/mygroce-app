@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import languageModel from "../../../../utils/languageModel";
@@ -15,7 +14,7 @@ export default function BlogCard({ className, datas }) {
     <div className={`blog-card-wrapper w-full group ${className || ""}`}>
       <div className="img w-full h-[290px] rounded-t overflow-hidden">
         <div className="w-full h-full relative transform scale-100 group-hover:scale-110 transition duration-300 ease-in-out">
-          <Image
+          <img
             layout="fill"
             objectFit={
               imgSrc === "/assets/images/spinner.gif" ? "scale-down" : "fill"

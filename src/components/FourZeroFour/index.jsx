@@ -2,9 +2,8 @@ import BreadcrumbCom from "../BreadcrumbCom";
 import Layout from "../Partials/Layout";
 // import ErrorThumb from "./ErrorThumb";
 import Link from "next/link";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useSelector } from "react-redux";
 import languageModel from "../../../utils/languageModel";
 export default function FourZeroFour() {
   const { websiteSetup } = useSelector((state) => state.websiteSetup);
@@ -32,7 +31,7 @@ export default function FourZeroFour() {
                 <div className="sm:mb-10 mb-0 transform sm:scale-100 scale-50">
                   {siteDate && (
                     <div className="w-[338px] h-[475px] relative">
-                      <Image
+                      <img
                         layout="fill"
                         objectFit="scale-down"
                         src={process.env.NEXT_PUBLIC_BASE_URL + siteDate.image}

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -82,7 +81,7 @@ export default function Ads({ handler }) {
                 <div className="logo mb-[20px]">
                   <Link href="/" passHref legacyBehavior>
                     <a>
-                      <Image
+                      <img
                         width="152"
                         height="36"
                         src={`${logo

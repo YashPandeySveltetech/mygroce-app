@@ -1,9 +1,8 @@
 // import Empty from "./Empty";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import languageModel from "../../../utils/languageModel";
 import { useSelector } from "react-redux";
-import Image from "next/image";
+import languageModel from "../../../utils/languageModel";
 export default function EmptyWishlistError() {
   const { websiteSetup } = useSelector((state) => state.websiteSetup);
   const [emptyWis, setEmptyWis] = useState(null);
@@ -27,7 +26,7 @@ export default function EmptyWishlistError() {
             {/*<Empty />*/}
             {emptyWis && (
               <div className="w-[429px] h-[412px] relative">
-                <Image
+                <img
                   layout="fill"
                   objectFit="scale-down"
                   src={process.env.NEXT_PUBLIC_BASE_URL + emptyWis}

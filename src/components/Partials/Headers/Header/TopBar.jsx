@@ -113,7 +113,7 @@ export default function TopBar({ className, contact }) {
                 </div>
                 {/*<div className="country-select flex space-x-1 items-center">*/}
                 {/*  <div>*/}
-                {/*    <Image*/}
+                {/*    <img*/}
                 {/*      src={`/assets/images/country-logo-16x16.png`}*/}
                 {/*      width="16"*/}
                 {/*      height="16"*/}

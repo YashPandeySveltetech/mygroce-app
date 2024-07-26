@@ -1,10 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import apiRequest from "../../../../../utils/apiRequest";
 import languageModel from "../../../../../utils/languageModel";
+import { fetchCart } from "../../../../store/Cart";
 import { fetchWishlist } from "../../../../store/wishlistData";
 import Cart from "../../../Cart";
 import SearchBox from "../../../Helpers/SearchBox";
@@ -12,6 +12,7 @@ import Compair from "../../../Helpers/icons/Compair";
 import ThinBag from "../../../Helpers/icons/ThinBag";
 import ThinLove from "../../../Helpers/icons/ThinLove";
 import ThinPeople from "../../../Helpers/icons/ThinPeople";
+
 export default function Middlebar({ className, settings }) {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -41,8 +42,10 @@ export default function Middlebar({ className, settings }) {
     cart && setCartItem(cart.cartProducts);
   }, [cart]);
   const [langCntnt, setLangCntnt] = useState(null);
+  
   useEffect(() => {
     setLangCntnt(languageModel());
+    dispatch(fetchCart());
   }, []);
   return (
     <div className={`w-full h-[86px] bg-white ${className}`}>
@@ -53,7 +56,7 @@ export default function Middlebar({ className, settings }) {
               <Link href="/" passHref legacyBehavior>
                 <a rel="noopener noreferrer">
                   {settings && (
-                    <Image
+                    <img
                       width="153"
                       height="44"
                       objectFit="scale-down"

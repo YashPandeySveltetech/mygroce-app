@@ -1,10 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ThinBag from "../../../Helpers/icons/ThinBag";
 import Middlebar from "./Middlebar";
-import Navbar from "./Navbar";
 import TopBar from "./TopBar";
 
 export default function Header({ drawerAction, settings, contact }) {
@@ -43,7 +41,7 @@ export default function Header({ drawerAction, settings, contact }) {
             <Link href="/" passHref legacyBehavior>
               <a>
                 {settings && (
-                  <Image
+                  <img
                     layout="fill"
                     objectFit="scale-down"
                     src={`${process.env.NEXT_PUBLIC_BASE_URL + settings.logo}`}
@@ -65,7 +63,7 @@ export default function Header({ drawerAction, settings, contact }) {
           </div>
         </div>
       </div>
-      <Navbar className="quomodo-shop-nav-bar lg:block hidden" />
+      {/* <Navbar className="quomodo-shop-nav-bar lg:block hidden" /> */}
     </header>
   );
 }

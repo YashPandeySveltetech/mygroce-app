@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -206,7 +205,7 @@ function ProductsCompaire() {
                         {/*</div>*/}
                         <div className="product-img flex justify-center mb-3 ">
                           <div className="w-[161px] h-[161px] relative">
-                            <Image
+                            <img
                               layout="fill"
                               objectFit="scale-down"
                               src={`${process.env.NEXT_PUBLIC_BASE_URL + item.image

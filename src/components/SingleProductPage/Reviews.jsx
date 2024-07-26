@@ -1,8 +1,4 @@
-import Image from "next/image";
 import Star from "../Helpers/icons/Star";
-import InputCom from "../Helpers/InputCom";
-import LoaderStyleOne from "../Helpers/Loaders/LoaderStyleOne";
-import StarRating from "../Helpers/StarRating";
 export default function Reviews({ comments }) {
   return (
     <div className="review-wrapper w-full">
@@ -19,7 +15,7 @@ export default function Reviews({ comments }) {
                 <div className="comment-author flex justify-between items-center mb-3">
                   <div className="flex space-x-3 items-center">
                     <div className="w-[50px] h-[50px] rounded-full overflow-hidden relative">
-                      <Image
+                      <img
                         layout="fill"
                         src={
                           comment.image
@@ -79,7 +75,7 @@ export default function Reviews({ comments }) {
                       <div className="comment-author  mb-3">
                         <div className="flex space-x-3 items-center">
                           <div className="w-[50px] h-[50px] rounded-full overflow-hidden relative">
-                            <Image
+                            <img
                               layout="fill"
                               src={`/assets/images/comment-user-2.png`}
                               alt=""

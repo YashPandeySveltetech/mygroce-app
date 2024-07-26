@@ -6,7 +6,6 @@ import InputCom from "../../Helpers/InputCom";
 import LoaderStyleOne from "../../Helpers/Loaders/LoaderStyleOne";
 import Layout from "../../Partials/Layout";
 // import Thumbnail from "./Thumbnail";
-import Image from "next/image";
 import { useSelector } from "react-redux";
 import languageModel from "../../../../utils/languageModel";
 
@@ -288,7 +287,7 @@ export default function ForgotPass() {
                 style={{ top: "calc(50% - 258px)" }}
               >
                 {imgThumb && (
-                  <Image
+                  <img
                     width={608}
                     height={480}
                     src={`${process.env.NEXT_PUBLIC_BASE_URL + imgThumb.image}`}

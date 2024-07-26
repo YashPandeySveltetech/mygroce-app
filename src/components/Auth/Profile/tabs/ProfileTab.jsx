@@ -1,5 +1,4 @@
 import axios from "axios";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import auth from "../../../../../utils/auth";
 import InputCom from "../../../Helpers/InputCom";
@@ -463,7 +462,7 @@ export default function ProfileTab({
                 <div className="flex xl:justify-center justify-start">
                   <div className="relative">
                     <div className="sm:w-[198px] sm:h-[198px] w-[199px] h-[199px] rounded-full overflow-hidden relative">
-                      <Image
+                      <img
                         layout="fill"
                         src={
                           profileImg

@@ -51,7 +51,7 @@ export default function Home({ homepageData }) {
       .category()
       .then((res) => {
         console.log(res,"myresult"); 
-        setCategoryList(res?.data)
+        setCategoryList(res?.data?.data)
     
       })
       .catch((err) => {
@@ -76,7 +76,9 @@ export default function Home({ homepageData }) {
           />
         )}
         <CategorySection
-          categories={homepage.homepage_categories}
+          // categories={homepage.homepage_categories}
+          categories={categoryList}
+
           adsOne={homepage.threeColFirstBanner}
           adsTwo={homepage.threeColSecondBanner}
           adsThree={homepage.threeColThirdBanner}

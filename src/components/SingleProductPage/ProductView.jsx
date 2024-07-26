@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -7,6 +6,7 @@ import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { toast } from "react-toastify";
 import apiRequest from "../../../utils/apiRequest";
 import auth from "../../../utils/auth";
+import languageModel from "../../../utils/languageModel";
 import settings from "../../../utils/settings";
 import { fetchCart } from "../../store/Cart";
 import { fetchWishlist } from "../../store/wishlistData";
@@ -14,7 +14,6 @@ import Star from "../Helpers/icons/Star";
 import ThinLove from "../Helpers/icons/ThinLove";
 import Selectbox from "../Helpers/Selectbox";
 import CheckProductIsExistsInFlashSale from "../Shared/CheckProductIsExistsInFlashSale";
-import languageModel from "../../../utils/languageModel";
 const Redirect = ({ message, linkTxt }) => {
   return (
     <div className="flex space-x-2 items-center">
@@ -292,7 +291,7 @@ export default function ProductView({
         >
           <div className="w-full">
             <div className="w-full md:h-[600px] h-[350px] border border-[#CBECD9] flex justify-center items-center overflow-hidden relative mb-3 relative rounded">
-              <Image
+              <img
                 layout="fill"
                 objectFit="scale-down"
                 src={`${process.env.NEXT_PUBLIC_BASE_URL + src}`}
@@ -317,7 +316,7 @@ export default function ProductView({
                 onClick={() => changeImgHandler(product.thumb_image)}
                 className="w-[110px] h-[110px] p-[15px] border border-[#CBECD9] cursor-pointer relative rounded"
               >
-                <Image
+                <img
                   layout="fill"
                   objectFit="scale-down"
                   src={`${
@@ -337,7 +336,7 @@ export default function ProductView({
                     key={i}
                     className="w-[110px] h-[110px] p-[15px] border border-qgray-border cursor-pointer relative"
                   >
-                    <Image
+                    <img
                       layout="fill"
                       objectFit="scale-down"
                       src={`${process.env.NEXT_PUBLIC_BASE_URL + img.image}`}

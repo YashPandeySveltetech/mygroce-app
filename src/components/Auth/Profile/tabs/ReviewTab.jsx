@@ -1,10 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import DateFormat from "../../../../../utils/DateFormat";
+import languageModel from "../../../../../utils/languageModel";
 import DataIteration from "../../../Helpers/DataIteration";
 import Star from "../../../Helpers/icons/Star";
-import languageModel from "../../../../../utils/languageModel";
 
 export default function ReviewTab({ className, reviews }) {
   const [langCntnt, setLangCntnt] = useState(null);
@@ -30,7 +29,7 @@ export default function ReviewTab({ className, reviews }) {
                 >
                   <div className="flex space-x-2 items-center w-full h-full p-2">
                     <div className="w-1/3 h-full relative">
-                      <Image
+                      <img
                         layout="fill"
                         objectFit="scale-down"
                         src={`${

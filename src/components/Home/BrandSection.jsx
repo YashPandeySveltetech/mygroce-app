@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import DataIteration from "../Helpers/DataIteration";
 export default function BrandSection({ className, sectionTitle, brands = [] }) {
@@ -27,7 +26,7 @@ export default function BrandSection({ className, sectionTitle, brands = [] }) {
                   }}
                 >
                   <div className="w-full h-[130px] bg-white border border-primarygray flex justify-center items-center relative cursor-pointer">
-                    <Image
+                    <img
                       layout="fill"
                       objectFit="scale-down"
                       src={`${process.env.NEXT_PUBLIC_BASE_URL + datas.logo}`}

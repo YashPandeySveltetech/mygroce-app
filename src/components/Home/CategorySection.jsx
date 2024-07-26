@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import ShopNowBtn from "../Helpers/Buttons/ShopNowBtn";
@@ -42,7 +41,7 @@ function CategorySection({
                       <a rel="noopener noreferrer">
                         <div className="w-full h-[192px] relative rounded bg-qgreenlow flex justify-center items-center">
                           <div className="w-full h-full relative transform scale-100 group-hover:scale-110 transition duration-300 ease-in-out">
-                            <Image
+                            <img
                               layout="fill"
                               objectFit="scale-down"
                               src={ item.image}
@@ -93,7 +92,7 @@ function CategorySection({
                 </Link>
               </div>
               <div className="w-full h-[230px] relative">
-                <Image
+                <img
                   layout="fill"
                   objectFit="scale-down"
                   src={`${process.env.NEXT_PUBLIC_BASE_URL + adsOne.image}`}
@@ -135,7 +134,7 @@ function CategorySection({
                 </Link>
               </div>
               <div className="w-full h-[230px] relative">
-                <Image
+                <img
                   layout="fill"
                   objectFit="scale-down"
                   src={`${process.env.NEXT_PUBLIC_BASE_URL + adsTwo.image}`}
@@ -176,7 +175,7 @@ function CategorySection({
                 </Link>
               </div>
               <div className="w-full h-[230px] relative">
-                <Image
+                <img
                   layout="fill"
                   objectFit="scale-down"
                   src={`${process.env.NEXT_PUBLIC_BASE_URL + adsThree.image}`}

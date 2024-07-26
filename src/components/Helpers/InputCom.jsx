@@ -31,7 +31,7 @@ export default function InputCom({
           placeholder={placeholder}
           value={value}
           min={min}
-          max={max}
+          max={10000000}
           onChange={inputHandler}
           className={`input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full font-normal bg-white focus:ring-0 focus:outline-none ${
             inputClasses || ""

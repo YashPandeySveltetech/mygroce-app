@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import isMultivendor from "../../../Middleware/isMultivendor";
@@ -197,7 +196,7 @@ function Sallers({ sellersData }) {
                         <div>
                           <div className="flex sm:justify-center justify-start">
                             <div className="w-[170px] h-[170px] rounded-full bg-white mb-[20px] flex justify-center items-center relative overflow-hidden">
-                              <Image
+                              <img
                                 layout="fill"
                                 objectFit="scale-down"
                                 src={`${process.env.NEXT_PUBLIC_BASE_URL + seller.logo

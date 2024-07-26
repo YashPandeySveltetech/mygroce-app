@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import languageModel from "../../../utils/languageModel";
@@ -32,7 +31,7 @@ export default function SallerInfo({ products, sellerInfo }) {
         <div className="sm:flex sm:space-x-5 items-center sm:w-1/4">
           <div className="saller w-[73px] h-[73px] rounded-full overflow-hidden relative">
             {seller.user && (
-              <Image
+              <img
                 layout="fill"
                 src={`${seller.user.image
                   ? process.env.NEXT_PUBLIC_BASE_URL + seller.user.image

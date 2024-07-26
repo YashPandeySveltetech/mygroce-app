@@ -1,13 +1,12 @@
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import "react-input-range/lib/css/index.css";
+import languageModel from "../../../utils/languageModel";
 import productDatas from "../../data/products.json";
 import ProductCardStyleOne from "../Helpers/Cards/ProductCardStyleOne";
 import DataIteration from "../Helpers/DataIteration";
 import Star from "../Helpers/icons/Star";
 import Layout from "../Partials/Layout";
 import ProductsFilter from "./ProductsFilter";
-import languageModel from "../../../utils/languageModel";
 export default function SallerPage() {
   const [filters, setFilter] = useState({
     mobileLaptop: false,
@@ -154,7 +153,7 @@ export default function SallerPage() {
               <div className="saller-logo mt-5 sm:mt-5">
                 <div className="flex sm:justify-center justify-start">
                   <div className="w-[170px] h-[170px] flex justify-center items-center rounded-full bg-white relative mb-1">
-                    <Image
+                    <img
                       layout="fill"
                       objectFit="scale-down"
                       src={`/assets/images/saller-7.png`}
@@ -185,7 +184,7 @@ export default function SallerPage() {
                 />
                 {/* ads */}
                 <div className="w-full hidden lg:block h-[295px] relative">
-                  <Image
+                  <img
                     layout="fill"
                     src={`/assets/images/ads-5.png`}
                     alt=""
@@ -253,7 +252,7 @@ export default function SallerPage() {
                 </div>
 
                 <div className="w-full h-[164px] overflow-hidden mb-[40px] relative">
-                  <Image
+                  <img
                     layout="fill"
                     src={`/assets/images/ads-6.png`}
                     alt=""

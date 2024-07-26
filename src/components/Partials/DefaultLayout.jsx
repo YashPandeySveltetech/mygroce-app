@@ -1,16 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import TawkTo from "tawkto-react";
+import languageModel from "../../../utils/languageModel";
 import { fetchCart } from "../../store/Cart";
 import { fetchCompareProducts } from "../../store/compareProduct";
 import { setupAction } from "../../store/websiteSetup";
 import { fetchWishlist } from "../../store/wishlistData";
-import languageModel from "../../../utils/languageModel";
-import TawkTo from "tawkto-react";
 
+import { useRouter } from "next/router";
 import Script from "next/script";
 import Consent from "../Helpers/Consent";
-import { useRouter } from "next/router";
 function DefaultLayout({ children }) {
   const router = useRouter();
   const { websiteSetup } = useSelector((state) => state.websiteSetup);
@@ -34,8 +34,8 @@ function DefaultLayout({ children }) {
           "language",
           JSON.stringify(res.data && res.data.language)
         );
-        if (res.data) {
-          setgTagId(res.data.googleAnalytic.analytic_id);
+        if (res?.data) {
+          setgTagId(res?.data?.googleAnalytic?.analytic_id);
           setTwkData({
             widgetId: res.data.tawk_setting.widget_id,
             propertyId: res.data.tawk_setting.property_id,

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -410,7 +409,7 @@ export default function Signup() {
                 style={{ top: "calc(50% - 258px)" }}
               >
                 {imgThumb && (
-                  <Image
+                  <img
                     width={608}
                     height={480}
                     src={`${process.env.NEXT_PUBLIC_BASE_URL + imgThumb.image}`}

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -111,7 +110,7 @@ export default function Blog({ details }) {
             <div className="blog-article lg:flex lg:space-x-[30px] pb-7 ">
               <div className="flex-1">
                 <div className="img w-full h-[457px] relative rounded overflow-hidden">
-                  <Image
+                  <img
                     layout="fill"
                     src={`${process.env.NEXT_PUBLIC_BASE_URL + details.blog.image
                       }`}
@@ -207,7 +206,7 @@ export default function Blog({ details }) {
                 <div className="extra-content w-full">
                   {/*<div className="w-full sm:flex sm:space-x-[30px]  mb-3">*/}
                   {/*  <div className="sm:w-[370px] h-[235px] relative">*/}
-                  {/*    <Image*/}
+                  {/*    <img*/}
                   {/*      layout="fill"*/}
                   {/*      src={`/assets/images/blog-details-1.jpg`}*/}
                   {/*      alt="blog"*/}
@@ -215,7 +214,7 @@ export default function Blog({ details }) {
                   {/*    />*/}
                   {/*  </div>*/}
                   {/*  <div className="flex-1 h-[235px] relative">*/}
-                  {/*    <Image*/}
+                  {/*    <img*/}
                   {/*      layout="fill"*/}
                   {/*      src={`/assets/images/blog-details-2.jpg`}*/}
                   {/*      alt="blog"*/}
@@ -542,7 +541,7 @@ export default function Blog({ details }) {
                       details.popularPosts.map((post) => (
                         <li key={post.blog_id} className="flex space-x-5 ">
                           <div className="w-[85px] h-[92px] overflow-hidden rounded relative mt-1">
-                            <Image
+                            <img
                               layout="fill"
                               src={`${process.env.NEXT_PUBLIC_BASE_URL +
                                 post.blog.image
@@ -689,9 +688,9 @@ export default function Blog({ details }) {
                         <input
                           onChange={(e) => setEmail(e.target.value.trim())}
                           value={email}
-                          type="text"
+                          type="number"
                           className="w-full h-[60px] bg-[#ECEAEC] rounded pl-5 focus:outline-none focus:ring-0 placeholder:text-[#9A9A9A]"
-                          placeholder="Enter Your Email Address"
+                          placeholder="Enter Your Mobile"
                         />
                       </div>
                       <button
