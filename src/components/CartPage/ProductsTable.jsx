@@ -1,74 +1,83 @@
-import { useEffect, useState } from "react";
-import languageModel from "../../../utils/languageModel";
 import settings from "../../../utils/settings";
-import InputQuantityCom from "../Helpers/InputQuantityCom";
-import CheckProductIsExistsInFlashSale from "../Shared/CheckProductIsExistsInFlashSale";
 
 export default function ProductsTable({
-  className,
-  cartItems,
-  deleteItem,
-  calCPriceDependQunatity,
-  incrementQty,
-  decrementQty,
+  // className,
+  // cartItems,
+  // deleteItem,
+  // calCPriceDependQunatity,
+  // incrementQty,
+  // decrementQty,
+  getCarts
 }) {
-  const [storeCarts, setItems] = useState(null);
-  const [langCntnt, setLangCntnt] = useState(null);
-  useEffect(() => {
-    setLangCntnt(languageModel());
-  }, []);
-  const price = (item) => {
-    if (item) {
-      if (item.product.offer_price) {
-        if (item.variants && item.variants.length > 0) {
-          const prices = item.variants.map((item) =>
-            item.variant_item ? parseInt(item.variant_item.price) : 0
-          );
-          const sumVarient = prices.reduce((p, c) => p + c);
-          return parseInt(item.product.offer_price) + sumVarient;
-        } else {
-          return parseInt(item.product.offer_price);
-        }
-      } else {
-        if (item.variants && item.variants.length > 0) {
-          const prices = item.variants.map((item) =>
-            item.variant_item ? parseInt(item.variant_item.price) : 0
-          );
-          const sumVarient = prices.reduce((p, c) => p + c);
-          return parseInt(item.product.price) + sumVarient;
-        } else {
-          return item.product.price;
-        }
-      }
-    }
-  };
-  const totalPriceCalc = (item) => {
-    if (item) {
-      const prices =
-        item.variants.length > 0
-          ? item.variants.map((item) =>
-              item.variant_item ? parseInt(item.variant_item.price) : 0
-            )
-          : false;
-      const sumVarient = prices ? prices.reduce((p, c) => p + c) : false;
-      if (sumVarient) {
-        const priceWithQty = sumVarient * parseInt(item.qty);
-        return parseInt(item.totalPrice) + priceWithQty;
-      } else {
-        return item.totalPrice * 1;
-      }
-    }
-  };
-  useEffect(() => {
-    setItems(cartItems);
-  });
+  // const [storeCarts, setItems] = useState(null);
+  // const [langCntnt, setLangCntnt] = useState(null);
+  // useEffect(() => {
+  //   setLangCntnt(languageModel());
+  // }, []);
+
+
+
+  // const price = (item) => {
+  //   if (item) {
+  //     if (item.product.offer_price) {
+  //       if (item.variants && item.variants.length > 0) {
+  //         const prices = item.variants.map((item) =>
+  //           item.variant_item ? parseInt(item.variant_item.price) : 0
+  //         );
+  //         const sumVarient = prices.reduce((p, c) => p + c);
+  //         return parseInt(item.product.offer_price) + sumVarient;
+  //       } else {
+  //         return parseInt(item.product.offer_price);
+  //       }
+  //     } else {
+  //       if (item.variants && item.variants.length > 0) {
+  //         const prices = item.variants.map((item) =>
+  //           item.variant_item ? parseInt(item.variant_item.price) : 0
+  //         );
+  //         const sumVarient = prices.reduce((p, c) => p + c);
+  //         return parseInt(item.product.price) + sumVarient;
+  //       } else {
+  //         return item.product.price;
+  //       }
+  //     }
+  //   }
+  // };
+  // const totalPriceCalc = (item) => {
+  //   if (item) {
+  //     const prices =
+  //       item.variants.length > 0
+  //         ? item.variants.map((item) =>
+  //             item.variant_item ? parseInt(item.variant_item.price) : 0
+  //           )
+  //         : false;
+  //     const sumVarient = prices ? prices.reduce((p, c) => p + c) : false;
+  //     if (sumVarient) {
+  //       const priceWithQty = sumVarient * parseInt(item.qty);
+  //       return parseInt(item.totalPrice) + priceWithQty;
+  //     } else {
+  //       return item.totalPrice * 1;
+  //     }
+  //   }
+  // };
+  // useEffect(() => {
+  //   setItems(cartItems);
+  // });
   const { currency_icon } = settings();
+
+  console.log(getCarts,"getCardss")
   return (
-    <div className={`w-full ${className || ""}`}>
+
+   
+    <div>
       <div className="relative w-full overflow-x-auto rounded overflow-hidden border border-[#CBECD9]">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          
+          {getCarts?.map}
           <tbody>
             {/* table heading */}
+
+            
+
             <tr className="text-[13px] font-medium text-black bg-[#F6F6F6] whitespace-nowrap px-2 border-b default-border-bottom uppercase">
               <td className="py-4 pl-10 block whitespace-nowrap min-w-[300px]">
                 {langCntnt && langCntnt.Product}
@@ -95,7 +104,7 @@ export default function ProductsTable({
                   <td className="pl-10  py-4  w-[380px]">
                     <div className="flex space-x-6 items-center">
                       <div className="w-[80px] h-[80px] rounded overflow-hidden flex justify-center items-center border border-[#CBECD9] relative">
-                        <img
+                        {/* <img
                           layout="fill"
                           src={`${
                             process.env.NEXT_PUBLIC_BASE_URL +
@@ -103,7 +112,7 @@ export default function ProductsTable({
                           }`}
                           alt="product"
                           className="w-full h-full object-contain"
-                        />
+                        /> */}
                       </div>
                       <div className="flex-1 flex flex-col">
                         <p className="font-medium text-[15px] text-qblack">

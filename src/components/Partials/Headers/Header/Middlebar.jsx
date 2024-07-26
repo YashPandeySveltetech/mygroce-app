@@ -37,10 +37,23 @@ export default function Middlebar({ className, settings }) {
   };
   //cart
   const { cart } = useSelector((state) => state.cart);
+  const cartLength = cart?.data?.items.length
+  
+
+
+  console.log(cart,"cartItem")
+
+
+
   const [cartItems, setCartItem] = useState(null);
-  useEffect(() => {
-    cart && setCartItem(cart.cartProducts);
-  }, [cart]);
+
+
+
+
+
+  // useEffect(() => {
+  //   cart && setCartItem(cart.cartProducts);
+  // }, [cart]);
   const [langCntnt, setLangCntnt] = useState(null);
   
   useEffect(() => {
@@ -117,7 +130,7 @@ export default function Middlebar({ className, settings }) {
                     </a>
                   </Link>
                   <span className="w-[18px] h-[18px] rounded-full  absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px]">
-                    {cartItems ? cartItems.length : 0}
+                    {cart ? cartLength : 0}
                   </span>
                 </div>
 
