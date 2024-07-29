@@ -47,9 +47,29 @@ function Login() {
     }
   }, [websiteSetup]);
   const rememberMe = () => {
-    setValue(!checked);
+   
 
+if(email){
+  getOTP()
+  
+ 
+}
   };
+const getOTP=()=>{
+  apiRequest
+  .getotp({
+    mobile: email,
+  })
+  .then(() => {
+    // router.push(`/verify-you?email=${email}`);
+    console.log('OTP send');
+    setValue(!checked);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
+
   const sendOtpHandler = () => {
     apiRequest
       .resend({
@@ -148,8 +168,7 @@ function Login() {
                       label="Enter Your Mobile Number"
                       name="email"
                       type="number"
-                      max={9999999999}
-                      min="1000000000"
+                      
                       inputClasses="h-[50px]"
                       inputHandler={(e) => setEmail(e.target.value)}
                       value={email}
