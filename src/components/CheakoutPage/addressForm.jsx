@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from 'react';
 
 
@@ -15,20 +16,44 @@ const AddNewAddress = () => {
     type: 'Home'
   });
 
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log("clicked")
     e.preventDefault();
-    // Handle form submission here
-    console.log(formData);
-  };
+    try {
+      const response = await axios.post('http://localhost:2000/address/add-address', formData);
+      console.log(response.data,"successfully");
+    } 
+    
+    catch (error) {
+      console.error('There was an error!', error);
+    }
+  }
+
+  
   return (
-    <div class="row-span-3 col-span-2 ">
+    <div class="w-[80%] ">
     <div>
     <div className=" mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Add New Address</h1>
+      <div className="flex justify-between mb-8">
+      <h1 className="text-2xl font-bold ">Add new Address</h1>
+      <div>
+      <button type="button" className="w-full flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
+        <svg class="w-5 h-5 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+        </svg>
+        <span>Go back</span>
+      </button>
+        </div>
+
+
+
+      </div>
+      
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
@@ -83,7 +108,7 @@ const AddNewAddress = () => {
             name="country"
             className="w-full p-2 border rounded"
             onChange={handleChange}
-            required
+            // required
           >
             <option value="">Select</option>
             {/* Add country options here */}
@@ -97,7 +122,7 @@ const AddNewAddress = () => {
               name="state"
               className="w-full p-2 border rounded"
               onChange={handleChange}
-              required
+              // required
             >
               <option value="">Select</option>
               {/* Add state options here */}
@@ -109,7 +134,7 @@ const AddNewAddress = () => {
               name="city"
               className="w-full p-2 border rounded"
               onChange={handleChange}
-              required
+              // required
             >
               <option value="">select</option>
               {/* Add city options here */}
