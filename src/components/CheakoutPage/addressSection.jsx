@@ -1,13 +1,18 @@
 import React from 'react';
 
 function AddressSection({setActiveTab,activeTab,addresses,setIsAddAddress,isAddAddress}) {
+  
+
+  
+
+  
     const TrashIcon = ({ className }) => (
         <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
         </svg>
       );
   return (
-    <div class="row-span-3 col-span-2 ">
+    <div class="w-[75%] mx-5 ">
     <div>
     <div className="p-4">
       <div className="flex bg-red mb-4">
@@ -29,7 +34,7 @@ function AddressSection({setActiveTab,activeTab,addresses,setIsAddAddress,isAddA
           Shipping Address
         </button>
         </div>
-        <button onClick={()=>setIsAddAddress(!isAddAddresss)} className="ml-auto px-4 py-2 border border-orange-300 text-orange-300 rounded">
+        <button onClick={()=>setIsAddAddress(!isAddAddress  )} className="ml-auto px-4 py-2 border border-orange-300 text-orange-300 rounded">
           Add New
         </button>
       </div>

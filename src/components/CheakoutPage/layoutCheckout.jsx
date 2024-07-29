@@ -36,8 +36,8 @@ function LayoutCheckout() {
 
 	return (
         <>
-         <h1 className="text-2xl font-bold mb-4">Add New Address</h1>
-		<div class='grid grid-rows-3 p-20 grid-flow-col gap-4'>
+         <h1 className="text-2xl font-bold  mx-[2%]">Addresses</h1>
+		<div class='p-5 flex '>
             
 			{isAddAddress ? (
 				<AddressForm />
@@ -50,7 +50,7 @@ function LayoutCheckout() {
 					setActiveTab={setActiveTab}
 				/>
 			)}
-			<div class=' bg-pink-300'>02</div>
+			<div class=' bg-pink-300 w-[20%]'>02</div>
 		</div>
         </>
 	);

@@ -22,6 +22,7 @@ function CheckoutPage() {
               ]}
             />
           </div>
+          
          
           <LayoutCheckout/>
 
