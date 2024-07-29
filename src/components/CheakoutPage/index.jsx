@@ -14,10 +14,10 @@ import Selectbox from "../Helpers/Selectbox";
 // import { PayPalButton } from "react-paypal-button-v2";
 import isAuth from "../../../Middleware/isAuth";
 import DateFormat from "../../../utils/DateFormat";
+import languageModel from "../../../utils/languageModel";
 import settings from "../../../utils/settings";
 import Sslcommerce from "../Helpers/icons/Sslcommerce";
 import CheckProductIsExistsInFlashSale from "../Shared/CheckProductIsExistsInFlashSale";
-import languageModel from "../../../utils/languageModel";
 function CheakoutPage() {
   const { websiteSetup } = useSelector((state) => state.websiteSetup);
   const { currency_icon } = settings();
@@ -394,6 +394,7 @@ function CheakoutPage() {
       tqList.reduce((prev, curr) => parseInt(prev) + parseInt(curr), 0);
     setQty(tq && tq);
   }, [cart]);
+  
   const checkProductExistsInFlashSale = (id, price) => {
     if (websiteSetup) {
       const flashSaleOffer =
@@ -1131,7 +1132,7 @@ function CheakoutPage() {
                           data-aos="zoom-in"
                           className="grid sm:grid-cols-2 grid-cols-1 gap-3"
                         >
-                          {addresses &&
+                          {/* {addresses &&
                             addresses.length > 0 &&
                             addresses.map((address, i) => (
                               <div
@@ -1237,7 +1238,7 @@ function CheakoutPage() {
                                   </span>
                                 )}
                               </div>
-                            ))}
+                            ))} */}
                         </div>
                       )}
                     </div>

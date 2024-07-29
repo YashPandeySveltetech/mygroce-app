@@ -1,7 +1,7 @@
 import React from "react";
-import CheakoutPage from "./../src/components/CheakoutPage/index";
 import PageHead from "../src/components/Helpers/PageHead";
 import Layout from "../src/components/Partials/Layout";
+import CheakoutPage from "./../src/components/CheakoutPage/checkoutPage";
 
 function checkout() {
   return (
