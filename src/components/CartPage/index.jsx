@@ -1,22 +1,25 @@
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import isAuth from "../../../Middleware/isAuth";
+import apiRequest from "../../../utils/apiRequest";
+import auth from "../../../utils/auth";
+import languageModel from "../../../utils/languageModel";
+import { fetchCart } from "../../store/Cart";
 import BreadcrumbCom from "../BreadcrumbCom";
 import EmptyCardError from "../EmptyCardError";
 import PageTitle from "../Helpers/PageTitle";
 import ProductsTable from "./ProductsTable";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import auth from "../../../utils/auth";
-import apiRequest from "../../../utils/apiRequest";
-import { toast } from "react-toastify";
-import { fetchCart } from "../../store/Cart";
-import Link from "next/link";
-import isAuth from "../../../Middleware/isAuth";
-import languageModel from "../../../utils/languageModel";
 
 function CardPage() {
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cart);
   const [getCarts, setGetCarts] = useState(null);
   const [langCntnt, setLangCntnt] = useState(null);
+
+
+  console.log(getCarts,"getcart")
   useEffect(() => {
     setLangCntnt(languageModel());
   }, []);
@@ -41,13 +44,13 @@ function CardPage() {
     }
   };
   useEffect(() => {
-    if (cart && cart.cartProducts.length > 0) {
-      const cartsItems = cart.cartProducts.map((item) => {
+    if (cart && cart?.data?.items.length > 0) {
+      const cartsItems = cart?.data?.items?.map((item) => {
         return {
           ...item,
-          totalPrice: item.product.offer_price
-            ? item.product.offer_price * parseInt(item.qty)
-            : item.product.price * parseInt(item.qty),
+          // totalPrice: item.product.offer_price
+          //   ? item.product.offer_price * parseInt(item.qty)
+          //   : item.product.price * parseInt(item.qty),
         };
       });
       setGetCarts(cartsItems);
@@ -55,6 +58,9 @@ function CardPage() {
       setGetCarts([]);
     }
   }, [cart]);
+
+
+
   const calCPriceDependQunatity = (id, qyt) => {
     setGetCarts(
       getCarts &&
@@ -130,12 +136,13 @@ function CardPage() {
           <div className="w-full mt-[23px]">
             <div className="container-x mx-auto">
               <ProductsTable
-                calCPriceDependQunatity={calCPriceDependQunatity}
+                // calCPriceDependQunatity={calCPriceDependQunatity}
                 incrementQty={serverReqIncreseQty}
                 decrementQty={serverReqDecreseQyt}
-                deleteItem={deleteItem}
-                cartItems={getCarts && getCarts}
+                // deleteItem={deleteItem}
+                // cartItems={getCarts && getCarts}
                 className="mb-[30px]"
+                getCarts = {getCarts}
               />
               <div className="w-full sm:flex justify-between">
                 <div className="flex space-x-4 items-center">

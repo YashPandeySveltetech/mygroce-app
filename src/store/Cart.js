@@ -11,17 +11,22 @@ const initialState = {
 //fetch data from api
 export const fetchCart = createAsyncThunk('CART/fetchCart', async () => {
 	if (true) {
-		const res = await fetch(``, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		});
+		const res = await fetch(
+			'http://192.168.15.226:2000/cart/get-cart-product/66a125927b76f73141806db6',
+			{
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}
+		);
+		console.log(res, 'res');
 		const data = await res.json();
 		return data;
 	}
 	return false;
 });
+
 //create action and reducer
 export const cart = createSlice({
 	name: CART,
