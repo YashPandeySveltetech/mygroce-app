@@ -1,19 +1,20 @@
 import settings from "../../../utils/settings";
-
+import InputQuantityCom from "../Helpers/InputQuantityCom";
+import CheckProductIsExistsInFlashSale from "../Shared/CheckProductIsExistsInFlashSale";
 export default function ProductsTable({
   // className,
   // cartItems,
   // deleteItem,
-  // calCPriceDependQunatity,
-  // incrementQty,
-  // decrementQty,
+  calCPriceDependQunatity,
+  incrementQty,
+  decrementQty,
   getCarts
 }) {
   // const [storeCarts, setItems] = useState(null);
-  // const [langCntnt, setLangCntnt] = useState(null);
-  // useEffect(() => {
-  //   setLangCntnt(languageModel());
-  // }, []);
+  // const [langCntnt, setLangCntnt] = const [first, setfirst] = useState(second)(null);
+  //   useEffect(() => {
+  //     setLangCntnt(languageModel());
+  //   }, []);
 
 
 
@@ -42,23 +43,26 @@ export default function ProductsTable({
   //     }
   //   }
   // };
-  // const totalPriceCalc = (item) => {
-  //   if (item) {
-  //     const prices =
-  //       item.variants.length > 0
-  //         ? item.variants.map((item) =>
-  //             item.variant_item ? parseInt(item.variant_item.price) : 0
-  //           )
-  //         : false;
-  //     const sumVarient = prices ? prices.reduce((p, c) => p + c) : false;
-  //     if (sumVarient) {
-  //       const priceWithQty = sumVarient * parseInt(item.qty);
-  //       return parseInt(item.totalPrice) + priceWithQty;
-  //     } else {
-  //       return item.totalPrice * 1;
-  //     }
-  //   }
-  // };
+  const totalPriceCalc = (item) => {
+    console.log(item,"itemmmm")
+    if (item) {
+      let price=(item?.price * item?.quantity)
+      return price.toFixed(2)
+      // const prices =
+      //   true
+      //     ? item.variants.map((item) =>
+      //         item.variant_item ? parseInt(item.variant_item.price) : 0
+      //       )
+      //     : false;
+      // const sumVarient = prices ? prices.reduce((p, c) => p + c) : false;
+      // if (sumVarient) {
+      //   const priceWithQty = sumVarient * parseInt(item.qty);
+      //   return parseInt(item.totalPrice) + priceWithQty;
+      // } else {
+      //   return item.totalPrice * 1;
+      // }
+    }
+  };
   // useEffect(() => {
   //   setItems(cartItems);
   // });
@@ -72,31 +76,34 @@ export default function ProductsTable({
       <div className="relative w-full overflow-x-auto rounded overflow-hidden border border-[#CBECD9]">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           
-          {getCarts?.map}
+        
           <tbody>
-            {/* table heading */}
+          
 
-            
+            <tr>
 
-            <tr className="text-[13px] font-medium text-black bg-[#F6F6F6] whitespace-nowrap px-2 border-b default-border-bottom uppercase">
+           
               <td className="py-4 pl-10 block whitespace-nowrap min-w-[300px]">
-                {langCntnt && langCntnt.Product}
+                 Product
               </td>
               <td className="py-4 whitespace-nowrap text-center min-w-[300px]">
-                {langCntnt && langCntnt.Price}
+               Price
               </td>
               <td className="py-4 whitespace-nowrap  text-center ">
-                {langCntnt && langCntnt.quantity}
+               Quantity
               </td>
               <td className="py-4 whitespace-nowrap  text-center min-w-[300px]">
-                {langCntnt && langCntnt.total}
+                Total
               </td>
-              <td className="py-4 whitespace-nowrap text-right w-[114px]"></td>
-            </tr>
-            {/* table heading end */}
-            {storeCarts &&
-              storeCarts.length > 0 &&
-              storeCarts.map((item) => (
+              <td className="pconst [langCntnt, setLangCntnt] = const [first, setfirst] = useState(second)(null);
+  //   useEffect(() => {
+  //     setLangCntnt(languageModel());
+  //   }, []);
+y-4 whitespace-nowrap text-right w-[114px]"></td>
+            </tr> 
+           
+            {
+              getCarts?.map((item) => (
                 <tr
                   key={item.id}
                   className="bg-white border-b hover:bg-gray-50"
@@ -104,19 +111,16 @@ export default function ProductsTable({
                   <td className="pl-10  py-4  w-[380px]">
                     <div className="flex space-x-6 items-center">
                       <div className="w-[80px] h-[80px] rounded overflow-hidden flex justify-center items-center border border-[#CBECD9] relative">
-                        {/* <img
+                        <img
                           layout="fill"
-                          src={`${
-                            process.env.NEXT_PUBLIC_BASE_URL +
-                            item.product.thumb_image
-                          }`}
+                          src={item?.productImage}
                           alt="product"
                           className="w-full h-full object-contain"
-                        /> */}
+                        />
                       </div>
                       <div className="flex-1 flex flex-col">
                         <p className="font-medium text-[15px] text-qblack">
-                          {item.product.name}
+                          {item.productName}
                         </p>
                       </div>
                     </div>
@@ -128,13 +132,13 @@ export default function ProductsTable({
                         {/*  id: item.id,*/}
                         {/*  price: price(item),*/}
                         {/*})}*/}
-                        {
-                          // price(item)
+                        
+                         
                           <CheckProductIsExistsInFlashSale
-                            id={item.product_id}
-                            price={price(item)}
+                            id={item.price}
+                            price={item.price}
                           />
-                        }
+                        
                         {/*{item.product.offer_price*/}
                         {/*  ? item.variants.length > 0*/}
                         {/*    ? item.variants.reduce(*/}
@@ -160,10 +164,10 @@ export default function ProductsTable({
                       <InputQuantityCom
                         decrementQty={decrementQty}
                         incrementQty={incrementQty}
-                        calcTotalPrice={calCPriceDependQunatity}
-                        productId={item.product.id}
-                        cartId={item.id}
-                        qyt={parseInt(item.qty)}
+                        // calcTotalPrice={calCPriceDependQunatity}
+                        productId={item.ProductID}
+                        cartId={item.ProductID}
+                        qyt={parseInt(item.quantity)}
                       />
                     </div>
                   </td>
@@ -171,10 +175,10 @@ export default function ProductsTable({
                     <div className="flex space-x-1 items-center justify-center">
                       <span className="text-[15px] font-normal">
                         <CheckProductIsExistsInFlashSale
-                          id={item.product_id}
+                          id={item.ProductID}
                           price={totalPriceCalc(item)}
-                        />
-                        {/*{totalPriceCalc(item)}*/}
+                        /> 
+                       
                       </span>
                     </div>
                   </td>
