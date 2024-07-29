@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import languageModel from "../../../utils/languageModel";
 import PageTitle from "../Helpers/PageTitle";
+import LayoutCheckout from './layoutCheckout';
 
 
 function CheckoutPage() {
@@ -9,7 +10,7 @@ function CheckoutPage() {
       setLangCntnt(languageModel());
     }, []);
   return (
-    <div>
+    <div className="w-full">
          {true && (
         <div className="checkout-page-wrapper w-full bg-white pb-[60px]">
           <div className="w-full mb-5">
@@ -22,6 +23,10 @@ function CheckoutPage() {
             />
           </div>
          
+          <LayoutCheckout/>
+
+
+
         </div>
       )}
       
