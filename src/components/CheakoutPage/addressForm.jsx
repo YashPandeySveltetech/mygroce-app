@@ -23,6 +23,8 @@ const AddNewAddress = () => {
 
   const handleSubmit = async (e) => {
     console.log("clicked")
+    // let data=[...formData]
+    // data['fullName']=formData['firstName'] + formData['lastName'] 
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:2000/address/add-address', formData);
