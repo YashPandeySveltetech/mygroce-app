@@ -1,9 +1,16 @@
-import axios from "axios";
 import React, { useState } from 'react';
+import apiRequest from '../../../utils/apiRequest';
 
 
   
 const AddNewAddress = () => {
+
+  
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
+
   const [formData, setFormData] = useState({
     "firstName": '',
     "lastName": '',
@@ -23,37 +30,62 @@ const AddNewAddress = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-  
-    let data = JSON.stringify(formData);
+  // const handleSubmit = async (e) => {
+  //   console.log("clicked")
+  //   // let data=[...formData]
+  //   // data['fullName']=formData['firstName'] + formData['lastName'] 
+  //   e.preventDefault();
+  //   try {
+  //     const response = await axios.post('http://localhost:2000/address/add-address', formData);
+  //     console.log(response.data,"successfully");
+  //   } 
     
-    let config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: 'http://localhost:2000/address/add-address',
-      headers: { 
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
+  //   let config = {
+  //     method: 'post',
+  //     maxBodyLength: Infinity,
+  //     url: 'http://localhost:2000/address/add-address',
+  //     headers: { 
+  //       'Content-Type': 'application/json'
+  //     },
+  //     data : data
+  //   };
     
-    axios.request(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  //   axios.request(config)
+  //   .then((response) => {
+  //     console.log(JSON.stringify(response.data));
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
     
-    // try {
-    //   const response = await axios.post('http://localhost:2000/address/add-address', {...formData,"userId":"66a125927b76f73141806db6",});
-    //   console.log(response.data,"successfully");
-    // } 
+  //   // try {
+  //   //   const response = await axios.post('http://localhost:2000/address/add-address', {...formData,"userId":"66a125927b76f73141806db6",});
+  //   //   console.log(response.data,"successfully");
+  //   // } 
     
-    // catch (error) {
-    //   console.error('There was an error!', error);
-    // }
-  }
+  //   // catch (error) {
+  //   //   console.error('There was an error!', error);
+  //   // }
+  // }
+
+
+
+  const handleSubmit = async () => {
+ 
+    await apiRequest.addAddress(formData)
+      .then((res) => {
+       
+        alert("success")
+        console.log(res,'result')
+        
+        
+        
+      })
+      .catch((err) => {
+        alert("unsuccess")
+        
+      });
+  };
 
   
   return (
@@ -67,7 +99,9 @@ const AddNewAddress = () => {
         <svg class="w-5 h-5 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
         </svg>
-        <span>Go back</span>
+        <button onClick={handleGoBack} className="text-blue-500 hover:underline">
+      <span>Go back</span>
+    </button>
       </button>
         </div>
 
@@ -75,7 +109,7 @@ const AddNewAddress = () => {
 
       </div>
       
-      <form onSubmit={handleSubmit}>
+      <div >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
             <label className="block mb-1">First Name*</label>
@@ -201,12 +235,13 @@ const AddNewAddress = () => {
         </div>
         
         <button
-          type="submit"
+          type="click"
+          onClick={handleSubmit}
           className="w-full bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
         >
           Save Address
         </button>
-      </form>
+      </div>
     </div>
     </div>
   </div>

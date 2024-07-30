@@ -1,8 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import apiRequest from '../../../utils/apiRequest';
 
-function AddressSection({setActiveTab,activeTab,addresses,setIsAddAddress,isAddAddress}) {
+
+function AddressSection({setActiveTab,activeTab,setIsAddAddress,isAddAddress}) {
+  const [addresses,setAddress] = useState([])
+
+  const Address = async () => {
+ 
+		await apiRequest.getAddress()
+		  .then((res) => {
+		   
+			console.log(res,"Addresss")
+			setAddress(res?.data?.data)
+		  })
+		  .catch((err) => {
+			// alert("unsuccess")
+			
+		  });
+	  };
+
+	useEffect(()=>{
+		Address()
+	  },[])
+  
+const handleDeleteAddress = async(id)=>{
+
+  await apiRequest.deleteAddress(id)
+  .then((res) => {
+    Address()
+  console.log(res,"Ho gya delete cgala jaaa bhojdysfghilj")
   
 
+  
+  
+  })
+  .catch((err) => {
+  console.log("unsuccess")
+  });
+}
   
 
   
@@ -39,10 +74,10 @@ function AddressSection({setActiveTab,activeTab,addresses,setIsAddAddress,isAddA
         </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {addresses.map((address, index) => (
+        {addresses?.map((address, index) => (
           <div key={index} className="bg-gray-100 p-4 rounded relative">
             <h3 className="font-bold mb-2">Address #{index + 1}</h3>
-            <button className="absolute top-2 right-2 text-red-500">
+            <button  onClick={()=>handleDeleteAddress(address?._id)} className="absolute top-2 right-2 text-red-500">
               <TrashIcon className="w-5 h-5" />
             </button>
             {Object.entries(address).map(([key, value]) => (
