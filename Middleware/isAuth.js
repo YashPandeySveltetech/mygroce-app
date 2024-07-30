@@ -12,7 +12,7 @@ const isAuth = (WrappedComponent) => {
 		const [checkAuth, setAuth] = useState(false);
 		useEffect(() => {
 			// const user = auth().access_token;
-			const user = false;
+			const user = true;
 
 			if (!user && Router.pathname !== '/login') {
 				Router.replace('/login');

@@ -5,15 +5,17 @@ import React, { useState } from 'react';
   
 const AddNewAddress = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    country: '',
-    state: '',
-    city: '',
-    address: '',
-    type: 'Home'
+    "firstName": '',
+    "lastName": '',
+    "email": '',
+    "mobile": '',
+    "country": 'India',
+    "state": 'Uttar Pradesh',
+    "city": 'Lucknow',
+    "postalCode": "226018",
+    "street": 'Mashakganj',
+    "type": 'Home',
+    "userId": "66a125927b76f73141806db6",
   });
 
 
@@ -22,16 +24,35 @@ const AddNewAddress = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log("clicked")
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:2000/address/add-address', formData);
-      console.log(response.data,"successfully");
-    } 
+  
+    let data = JSON.stringify(formData);
     
-    catch (error) {
-      console.error('There was an error!', error);
-    }
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'http://localhost:2000/address/add-address',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+    
+    axios.request(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+    
+    // try {
+    //   const response = await axios.post('http://localhost:2000/address/add-address', {...formData,"userId":"66a125927b76f73141806db6",});
+    //   console.log(response.data,"successfully");
+    // } 
+    
+    // catch (error) {
+    //   console.error('There was an error!', error);
+    // }
   }
 
   
@@ -93,7 +114,7 @@ const AddNewAddress = () => {
             <label className="block mb-1">Phone Number*</label>
             <input
               type="tel"
-              name="phone"
+              name="mobile"
               placeholder="012 3 ******"
               className="w-full p-2 border rounded"
               onChange={handleChange}
@@ -146,7 +167,7 @@ const AddNewAddress = () => {
           <label className="block mb-1">Address*</label>
           <input
             type="text"
-            name="address"
+            name="street"
             placeholder="your address here"
             className="w-full p-2 border rounded"
             onChange={handleChange}

@@ -13,7 +13,7 @@ const instance = axios.create({
 	},
 });
 const instanceNew = axios.create({
-	baseURL: 'http://192.168.15.226:2000/',
+	baseURL: 'http://localhost:2000/',
 	headers: {
 		'content-Type': 'application/json',
 		Accept: 'application/json',
