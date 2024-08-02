@@ -21,12 +21,12 @@ import { useDispatch } from "react-redux";
 import isAuth from "../../../../Middleware/isAuth";
 import apiRequest from "../../../../utils/apiRequest";
 import auth from "../../../../utils/auth";
+import languageModel from "../../../../utils/languageModel";
 import { fetchWishlist } from "../../../store/wishlistData";
 import Multivendor from "../../Shared/Multivendor";
 import ProfileTab from "./tabs/ProfileTab";
 import ReviewTab from "./tabs/ReviewTab";
 import WishlistTab from "./tabs/WishlistTab";
-import languageModel from "../../../../utils/languageModel";
 
 function Profile() {
   const router = useRouter();
@@ -140,6 +140,84 @@ function Profile() {
   }, [switchDashboard]);
   const checkSellerAndVendor =
     Multivendor() === 1 && dashBoardData && dashBoardData.is_seller;
+
+    let dashBoardDataNew={
+      "personInfo": {
+          "id": 7,
+          "name": "Mygroce Fresh",
+          "email": "mailto:user@gmail.com",
+          "phone": "1234567890",
+          "image": "",
+          "country_id": 2,
+          "state_id": 5,
+          "city_id": 9,
+          "zip_code": "1230",
+          "address": "India"
+      },
+      "countries": [
+          {
+              "id": 2,
+              "name": "India",
+              "slug": "india",
+              "status": 1,
+              "created_at": "2022-01-30T20:28:39.000000Z",
+              "updated_at": "2022-01-30T20:28:39.000000Z"
+          }
+      ],
+      "states": [
+          {
+              "id": 4,
+              "country_id": 2,
+              "name": "Gujarat",
+              "slug": "gujarat",
+              "status": 1,
+              "created_at": "2022-02-06T15:16:27.000000Z",
+              "updated_at": "2022-02-06T15:16:27.000000Z"
+          },
+          {
+              "id": 5,
+              "country_id": 2,
+              "name": "Punjab",
+              "slug": "punjab",
+              "status": 1,
+              "created_at": "2022-02-06T15:16:39.000000Z",
+              "updated_at": "2022-02-06T15:16:39.000000Z"
+          },
+          {
+              "id": 6,
+              "country_id": 2,
+              "name": "Rajasthan",
+              "slug": "rajasthan",
+              "status": 1,
+              "created_at": "2022-02-06T15:16:48.000000Z",
+              "updated_at": "2022-02-06T15:16:48.000000Z"
+          },
+          {
+              "id": 13,
+              "country_id": 2,
+              "name": "Uttar Pradesh",
+              "slug": "uttar-pradesh",
+              "status": 1,
+              "created_at": "2024-05-22T08:11:10.000000Z",
+              "updated_at": "2024-05-22T08:11:10.000000Z"
+          }
+      ],
+      "cities": [
+          {
+              "id": 9,
+              "country_state_id": 5,
+              "name": "Chandigarh",
+              "slug": "chandigarh",
+              "status": 1,
+              "created_at": "2022-02-06T15:22:44.000000Z",
+              "updated_at": "2022-02-06T15:22:44.000000Z"
+          }
+      ],
+      "defaultProfile": {
+          "id": 15,
+          "image": "uploads\/website-images\/default-avatar-2022-10-31-04-54-06-2202.jpg"
+      }
+  }
   return (
     <div className="profile-page-wrapper w-full bg-white">
       <div className="container-x mx-auto">
@@ -190,6 +268,7 @@ function Profile() {
                           {langCntnt && langCntnt.dashboard}
                         </span>
                       </div>
+                      
                     </Link>
                   </div>
                   <div className="item group">
@@ -308,8 +387,8 @@ function Profile() {
                 <div className="item-body dashboard-wrapper w-full">
                   {active === "dashboard" ? (
                     <>
-                      {dashBoardData && (
-                        <Dashboard dashBoardData={dashBoardData} />
+                      {dashBoardDataNew && (
+                        <Dashboard dashBoardData={dashBoardDataNew} />
                       )}
                     </>
                   ) : active === "profile" ? (

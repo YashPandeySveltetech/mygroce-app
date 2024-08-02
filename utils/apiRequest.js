@@ -21,6 +21,19 @@ const instanceNew = axios.create({
 });
 
 export default {
+  incrementQyt: (id) =>
+    instanceNew({
+      method: "PUT",
+      url: `/product/update-quantity-product/${id}`,
+      data: {action: "add"},
+    }),
+  decrementQyt: (id) =>
+    instanceNew({
+      method: "PUT",
+      url: `/product/update-quantity-product/${id}`,
+      data: {action: "subtract"},
+    }),
+
   deleteAddress: (id) =>
     instanceNew({
       method: "DELETE",
@@ -68,7 +81,7 @@ export default {
   productBysubcategory: (id) =>
     instanceNew({
       method: "GET",
-      url: `category/get-product-by-subcategory/${id}`,
+      url: `category/get-product-by-subcategory/${id}`,  
     }),
 
   productById: (id) =>
@@ -187,16 +200,7 @@ export default {
       url: `user/address?token=${token}`,
       data,
     }),
-  incrementQyt: (id, token) =>
-    instance({
-      method: "GET",
-      url: `cart-item-increment/${id}?token=${token}`,
-    }),
-  decrementQyt: (id, token) =>
-    instance({
-      method: "GET",
-      url: `cart-item-decrement/${id}?token=${token}`,
-    }),
+
   // deleteAddress: (id, token) =>
   //   instance({
   //     method: "DELETE",
