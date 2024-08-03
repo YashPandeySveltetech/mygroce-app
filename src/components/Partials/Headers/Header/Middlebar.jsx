@@ -41,7 +41,6 @@ export default function Middlebar({ className, settings }) {
   
 
 
-  console.log(cart,"cartItem")
 
 
 

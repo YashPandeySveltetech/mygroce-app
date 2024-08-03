@@ -12,7 +12,7 @@ const initialState = {
 export const fetchCart = createAsyncThunk('CART/fetchCart', async () => {
 	if (true) {
 		const res = await fetch(
-			'http://192.168.15.226:2000/cart/get-cart-product/66a125927b76f73141806db6',
+			'http://192.168.1.2:2000/cart/get-cart-product/66a125927b76f73141806db6',
 			{
 				method: 'GET',
 				headers: {

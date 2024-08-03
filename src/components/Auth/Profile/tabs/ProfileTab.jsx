@@ -6,27 +6,28 @@ import Selectbox from "../../../Helpers/Selectbox";
 // import apiRequest from "../../../../../utils/apiRequest";
 import { toast } from "react-toastify";
 import languageModel from "../../../../../utils/languageModel";
-export default function ProfileTab({
+export default function   ProfileTab({
   profileInfo,
   updatedProfile,
   selectedCountries,
   selectedStates,
   selectedCities,
 }) {
-  const [name, setName] = useState(profileInfo.personInfo.name);
-  const [email, setEmail] = useState(profileInfo.personInfo.email);
+  const [name, setName] = useState(profileInfo?.name);
+  const [email, setEmail] = useState(profileInfo?.email);
   const [phone, setPhone] = useState(
-    profileInfo.personInfo.phone && profileInfo.personInfo.phone !== "null"
-      ? profileInfo.personInfo.phone
+    profileInfo?.phone && profileInfo?.phone !== "null"
+      ? profileInfo?.phone
       : ""
   );
+  console.log(profileInfo,'profileInfoprofileInfo');
   const [countryDropdown, setCountryDropdown] = useState(selectedCountries);
   const [country, setCountry] = useState(null);
   const [stateDropdown, setStateDropdown] = useState(selectedStates);
   const [state, setState] = useState(null);
   const [cityDropdown, setCityDropdown] = useState(selectedCities);
   const [city, setcity] = useState(null);
-  const [address, setAddress] = useState(profileInfo.personInfo.address);
+  const [address, setAddress] = useState(profileInfo?.address);
   const [errors, setErrors] = useState(null);
   const [formImg, setFormImag] = useState(null);
   const [langCntnt, setLangCntnt] = useState(null);
@@ -97,9 +98,9 @@ export default function ProfileTab({
   // }, []);
   const [profileImg, setprofileImg] = useState(null);
   const [getImg] = useState(
-    profileInfo && profileInfo.personInfo && profileInfo.personInfo.image
-      ? profileInfo.personInfo.image
-      : profileInfo.defaultProfile.image
+    profileInfo && profileInfo.personInfo && profileInfo?.image
+      ? profileInfo?.image
+      : profileInfo?.image
   );
   const profileImgInput = useRef(null);
   const browseprofileImg = () => {
@@ -245,7 +246,7 @@ export default function ProfileTab({
                           countryDropdown.find(
                             (item) =>
                               parseInt(item.id) ===
-                              parseInt(profileInfo.personInfo.country_id)
+                              parseInt(profileInfo?.country_id)
                           );
                         return item ? item.name : "Select";
                       })()
@@ -309,7 +310,7 @@ export default function ProfileTab({
                           let item = profileInfo.states.find(
                             (item) =>
                               item.id ===
-                              parseInt(profileInfo.personInfo.state_id)
+                              parseInt(profileInfo?.state_id)
                           );
                           return item ? item.name : "Select";
                         })()
@@ -372,7 +373,7 @@ export default function ProfileTab({
                           let item = profileInfo.cities.find(
                             (item) =>
                               item.id ===
-                              parseInt(profileInfo.personInfo.city_id)
+                              parseInt(profileInfo?.city_id)
                           );
                           return item ? item.name : "Select";
                         })()
