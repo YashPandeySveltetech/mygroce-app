@@ -79,22 +79,22 @@ function CardPage() {
     );
   };
   const serverReqIncreseQty = (id) => {
-    if (auth()) {
-      apiRequest.incrementQyt(id, auth().access_token);
+   
+      apiRequest.incrementQyt(id);
       dispatch(fetchCart());
-    }
+    
   };
   const serverReqDecreseQyt = (id) => {
-    if (auth()) {
-      apiRequest.decrementQyt(id, auth().access_token);
-      // .then((res) => {
-      //   // dispatch(fetchCart());
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
+    
+      apiRequest.incrementQyt(id)
+      .then((res) => {
+        dispatch(fetchCart());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
       dispatch(fetchCart());
-    }
+    
   };
   const clearCart = async () => {
     if (auth()) {

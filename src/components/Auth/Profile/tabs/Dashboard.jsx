@@ -1,109 +1,154 @@
 import React, { useEffect, useState } from "react";
-import auth from "../../../../../utils/auth";
-import axios from "axios";
 import languageModel from "../../../../../utils/languageModel";
 
-export default function Dashboard({ dashBoardData }) {
-  const [country, setCountry] = useState(null);
-  const [state, setState] = useState(null);
+export default function Dashboard() {
+  const [country, setCountry] = useState([
+    {
+        "id": 2,
+        "name": "India",
+        "slug": "india",
+        "status": 1,
+        "created_at": "2022-01-30T20:28:39.000000Z",
+        "updated_at": "2022-01-30T20:28:39.000000Z"
+    }
+],);
+  const [state, setState] = useState([
+    {
+        "id": 4,
+        "country_id": 2,
+        "name": "Gujarat",
+        "slug": "gujarat",
+        "status": 1,
+        "created_at": "2022-02-06T15:16:27.000000Z",
+        "updated_at": "2022-02-06T15:16:27.000000Z"
+    },
+    {
+        "id": 5,
+        "country_id": 2,
+        "name": "Punjab",
+        "slug": "punjab",
+        "status": 1,
+        "created_at": "2022-02-06T15:16:39.000000Z",
+        "updated_at": "2022-02-06T15:16:39.000000Z"
+    },
+    {
+        "id": 6,
+        "country_id": 2,
+        "name": "Rajasthan",
+        "slug": "rajasthan",
+        "status": 1,
+        "created_at": "2022-02-06T15:16:48.000000Z",
+        "updated_at": "2022-02-06T15:16:48.000000Z"
+    },
+    {
+        "id": 13,
+        "country_id": 2,
+        "name": "Uttar Pradesh",
+        "slug": "uttar-pradesh",
+        "status": 1,
+        "created_at": "2024-05-22T08:11:10.000000Z",
+        "updated_at": "2024-05-22T08:11:10.000000Z"
+    }
+]);
   const [city, setcity] = useState(null);
   const [langCntnt, setLangCntnt] = useState(null);
   useEffect(() => {
     setLangCntnt(languageModel());
   }, []);
-  const getCountry = async () => {
-    if (auth()) {
-      await axios
-        .get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}api/user/address/create?token=${
-            auth().access_token
-          }`
-        )
-        .then((res) => {
-          const country =
-            res.data &&
-            res.data.countries.find(
-              (item) =>
-                item.id === parseInt(dashBoardData.personInfo.country_id)
-            );
-          setCountry(country && country);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      return false;
-    }
-  };
-  const getState = (value) => {
-    if (auth() && value) {
-      axios
-        .get(
-          `${
-            process.env.NEXT_PUBLIC_BASE_URL
-          }api/user/state-by-country/${value}?token=${auth().access_token}`
-        )
-        .then((res) => {
-          const state =
-            res.data &&
-            res.data.states.find(
-              (item) => item.id === parseInt(dashBoardData.personInfo.state_id)
-            );
-          setState(state && state);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      return false;
-    }
-  };
-  const getcity = (value) => {
-    if (auth() && value) {
-      axios
-        .get(
-          `${
-            process.env.NEXT_PUBLIC_BASE_URL
-          }api/user/city-by-state/${value}?token=${auth().access_token}`
-        )
-        .then((res) => {
-          const city =
-            res.data &&
-            res.data.cities.find(
-              (item) => item.id === parseInt(dashBoardData.personInfo.city_id)
-            );
-          setcity(city && city);
-        })
-        .catch((err) => {
-          console.log(err.response);
-        });
-    } else {
-      return false;
-    }
-  };
-  useEffect(() => {
-    if (!country) {
-      getCountry();
-    }
-  }, []);
-  useEffect(() => {
-    if (country) {
-      getState(country.id);
-    }
-  }, [country]);
+  // const getCountry = async () => {
+  //   if (true) {
+  //     await axios
+  //       .get(
+  //         `${process.env.NEXT_PUBLIC_BASE_URL}api/user/address/create?token=${
+  //           auth().access_token
+  //         }`
+  //       )
+  //       .then((res) => {
+  //         const country =
+  //           res.data &&
+  //           res.data.countries.find(
+  //             (item) =>
+  //               item.id === parseInt(dashBoardData.personInfo.country_id)
+  //           );
+  //         setCountry(country && country);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   } else {
+  //     return false;
+  //   }
+  // // };
+  // const getState = (value) => {
+  //   if (auth() && value) {
+  //     axios
+  //       .get(
+  //         `${
+  //           process.env.NEXT_PUBLIC_BASE_URL
+  //         }api/user/state-by-country/${value}?token=${auth().access_token}`
+  //       )
+  //       .then((res) => {
+  //         const state =
+  //           res.data &&
+  //           res.data.states.find(
+  //             (item) => item.id === parseInt(dashBoardData.personInfo.state_id)
+  //           );
+  //         setState(state && state);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   } else {
+  //     return false;
+  //   }
+  // };
+  // const getcity = (value) => {
+  //   if (auth() && value) {
+  //     axios
+  //       .get(
+  //         `${
+  //           process.env.NEXT_PUBLIC_BASE_URL
+  //         }api/user/city-by-state/${value}?token=${auth().access_token}`
+  //       )
+  //       .then((res) => {
+  //         const city =
+  //           res.data &&
+  //           res.data.cities.find(
+  //             (item) => item.id === parseInt(dashBoardData.personInfo.city_id)
+  //           );
+  //         setcity(city && city);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err.response);
+  //       });
+  //   } else {
+  //     return false;
+  //   }
+  // };
+  // useEffect(() => {
+  //   if (!country) {
+  //     getCountry();
+  //   }
+  // }, []);
+  // useEffect(() => {
+  //   if (country) {
+  //     getState(country.id);
+  //   }
+  // }, [country]);
 
-  useEffect(() => {
-    if (state) {
-      getcity(state.id);
-    }
-  }, [state]);
+  // useEffect(() => {
+  //   if (state) {
+  //     getcity(state.id);
+  //   }
+  // }, [state]);
 
   return (
     <>
       <div className="welcome-msg w-full">
         <div>
           <p className="text-qblack text-lg">
-            {langCntnt && langCntnt.Hello}, {dashBoardData.personInfo.name}
+            {langCntnt && langCntnt.Hello}, 
+            {/* {dashBoardData.personInfo.name} */}
           </p>
           <h1 className="font-bold text-[24px] text-qblack">
             {langCntnt && langCntnt.Welcome_to_your_Profile}
@@ -140,7 +185,7 @@ export default function Dashboard({ dashBoardData }) {
             {langCntnt && langCntnt.New_Orders}
           </p>
           <span className="text-[40px] text-white group-hover:text-white font-bold leading-none mt-1 block">
-            {dashBoardData.pendingOrder}
+            {/* {dashBoardData.pendingOrder} */}
           </span>
         </div>
         <div className="qv-item xl:w-[252px] xl:h-[208px] lg:w-1/2 w-full mb-5 xl:mb-0 bg-qblack group transition-all duration-300 ease-in-out p-6 rounded">
@@ -164,7 +209,7 @@ export default function Dashboard({ dashBoardData }) {
             {langCntnt && langCntnt.Delivery_Completed}
           </p>
           <span className="text-[40px] text-white group-hover:text-white font-bold leading-none mt-1 block">
-            {dashBoardData.completeOrder}
+            {/* {dashBoardData.completeOrder} */}
           </span>
         </div>
         <div className="qv-item xl:w-[252px] xl:h-[208px] lg:w-1/2 w-full mb-5 xl:mb-0 bg-qblack group transition-all duration-300 ease-in-out p-6 rounded">
@@ -196,7 +241,7 @@ export default function Dashboard({ dashBoardData }) {
             {langCntnt && langCntnt.Total_Orders}
           </p>
           <span className="text-[40px] text-white group-hover:text-white font-bold leading-none mt-1 block">
-            {dashBoardData.totalOrder}
+            {/* {dashBoardData.totalOrder} */}
           </span>
         </div>
       </div>
@@ -213,7 +258,7 @@ export default function Dashboard({ dashBoardData }) {
                     <p>{langCntnt && langCntnt.Name}:</p>
                   </td>
                   <td className="text-base text-qblack font-medium">
-                    {dashBoardData.personInfo.name}
+                    {/* {dashBoardData.personInfo.name} */}
                   </td>
                 </tr>
                 <tr className="flex mb-5">
@@ -221,7 +266,7 @@ export default function Dashboard({ dashBoardData }) {
                     <p>{langCntnt && langCntnt.Email}:</p>
                   </td>
                   <td className="text-base text-qblack font-medium">
-                    {dashBoardData.personInfo.email}
+                    {/* {dashBoardData.personInfo.email} */}
                   </td>
                 </tr>
                 <tr className="flex mb-5">
@@ -229,9 +274,9 @@ export default function Dashboard({ dashBoardData }) {
                     <p>{langCntnt && langCntnt.phone}:</p>
                   </td>
                   <td className="text-base text-qblack font-medium">
-                    {dashBoardData.personInfo.phone
+                    {/* {dashBoardData.personInfo.phone
                       ? dashBoardData.personInfo.phone
-                      : ""}
+                      : ""} */}
                   </td>
                 </tr>
                 <tr className="flex mb-5">
@@ -243,16 +288,16 @@ export default function Dashboard({ dashBoardData }) {
                       state &&
                       city &&
                       city.name + "," + state.name + "," + country.name}{" "}
-                    {dashBoardData.personInfo.zip_code
+                    {/* {dashBoardData.personInfo.zip_code
                       ? dashBoardData.personInfo.zip_code
-                      : ""}
+                      : ""} */}
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        {dashBoardData.is_seller && (
+        {/* {dashBoardData.is_seller && (
           <>
             <div className="w-[1px] h-[164px] bg-[#E4E4E4]"></div>
             <div className="ml-6">
@@ -294,20 +339,13 @@ export default function Dashboard({ dashBoardData }) {
                         {dashBoardData.sellerInfo.address}
                       </td>
                     </tr>
-                    {/*<tr className="flex mb-5">*/}
-                    {/*  <td className="text-base text-qgraytwo w-[100px] block capitalize">*/}
-                    {/*    <div>Zip:</div>*/}
-                    {/*  </td>*/}
-                    {/*  <td className="text-base text-qblack font-medium">*/}
-                    {/*    4040*/}
-                    {/*  </td>*/}
-                    {/*</tr>*/}
+                   
                   </tbody>
                 </table>
               </div>
             </div>
           </>
-        )}
+        )} */}
       </div>
     </>
   );

@@ -38,6 +38,7 @@ function Login() {
   const [imgThumb, setImgThumb] = useState(null);
   const [langCntnt, setLangCntnt] = useState(null);
   const [otp, setOtp] = useState('');
+  console.log(otp);
   useEffect(() => {
     setLangCntnt(languageModel());
   }, []);
@@ -46,10 +47,53 @@ function Login() {
       setImgThumb(websiteSetup.payload.login_page_image);
     }
   }, [websiteSetup]);
-  const rememberMe = () => {
-    setValue(!checked);
 
+  const [timer, setTimer] = useState(180); // 3 minutes = 180 seconds
+  const [isOtpSent, setIsOtpSent] = useState(false);
+
+  useEffect(() => {
+    let interval;
+    if (isOtpSent && timer > 0) {
+      interval = setInterval(() => {
+        setTimer(prevTimer => prevTimer - 1);
+      }, 1000);
+    }
+    if (timer === 0) {
+      clearInterval(interval);
+      setIsOtpSent(false);
+      setTimer(180); // Reset the timer after it ends
+    }
+    return () => clearInterval(interval);
+  }, [isOtpSent, timer]);
+
+  const handleSendOTP=async()=>{
+    if(!email){
+      alert('Phone number is required!')
+    }
+    apiRequest
+    .getotp({
+      mobile: email,
+    })
+    .then(() => {
+      // router.push(`/verify-you?email=${email}`);
+      setIsOtpSent(true);
+      console.log('OTP send');
+      setValue(!checked);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+  const rememberMe = () => {
+if(email){
+  getOTP()
+}
   };
+
+const getOTP=()=>{
+
+}
+
   const sendOtpHandler = () => {
     apiRequest
       .resend({
@@ -67,14 +111,14 @@ function Login() {
     await apiRequest
       .login({
         mobile: email,
-        password: password,
+        // password: password,
+        otp:otp
       })
       .then((res) => {
         setLoading(false);
         toast.success(langCntnt && langCntnt.Login_Successfully);
         setEmail("");
         setPassword("");
-
         localStorage.removeItem("auth");
         localStorage.setItem("auth", JSON.stringify(res.data));
         dispatch(fetchWishlist());
@@ -148,14 +192,13 @@ function Login() {
                       label="Enter Your Mobile Number"
                       name="email"
                       type="number"
-                      max={9999999999}
-                      min="1000000000"
+                      
                       inputClasses="h-[50px]"
                       inputHandler={(e) => setEmail(e.target.value)}
                       value={email}
                     />
                   </div>
-                  {!checked ?(
+                  {!true ?(
                   <div className="input-item mb-5">
                     <InputCom
                       placeholder="******"
@@ -192,9 +235,9 @@ function Login() {
                     />
                   </div>
                   )}
-                  <div className="forgot-password-area flex justify-between items-center mb-7">
+                  <div className="forgot-password-area flex justify-center items-center mb-7">
                     <div className="remember-checkbox flex items-center space-x-2.5">
-                      <button
+                      {/* <button
                         onClick={rememberMe}
                         type="button"
                         className="w-5 h-5 text-qblack flex justify-center items-center border border-light-gray"
@@ -212,20 +255,22 @@ function Login() {
                               clipRule="evenodd"
                             />
                           </svg>
-                        )}
-                      </button>
-                      <span
+                        )} */}
+                      {/* </button> */}
+                      {/* <span
                         onClick={rememberMe}
                         className="text-base text-black"
                       >
                        Login With OTP
-                      </span>
+                      </span> */}
                     </div>
-                    <Link href="/forgot-password">
-                      <span className="text-base text-qgreen cursor-pointer">
-                        {langCntnt && langCntnt.Forgot_password}
+                    <button onClick={handleSendOTP}  disabled={isOtpSent}>
+                      <span className="text-base  text-qgreen cursor-pointer">
+                       {/* Send OTP */}
+                       {isOtpSent ? `Resend OTP in ${Math.floor(timer / 60)}:${timer % 60 < 10 ? '0' : ''}${timer % 60}` : 'Send OTP'}
+
                       </span>
-                    </Link>
+                    </button>
                   </div>
                   <div className="signin-area mb-3.5">
                     <div className="flex justify-center">

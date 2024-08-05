@@ -136,7 +136,7 @@ export default function Middlebar({ className, settings }) {
                 <Cart className="absolute -right-[45px] top-11 z-50 hidden group-hover:block rounded" />
               </div>
               <div>
-                {auth ? (
+                {true ? (
                   <button onClick={profilehandler} type="button">
                     <span>
                       <ThinPeople />

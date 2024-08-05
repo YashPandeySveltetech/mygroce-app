@@ -1,11 +1,11 @@
-import axios from "axios";
+import { City, Country, State } from 'country-state-city';
 import { useEffect, useRef, useState } from "react";
-import auth from "../../../../../utils/auth";
+import apiRequest from "../../../../../utils/apiRequest";
+import languageModel from "../../../../../utils/languageModel";
 import InputCom from "../../../Helpers/InputCom";
 import Selectbox from "../../../Helpers/Selectbox";
-// import apiRequest from "../../../../../utils/apiRequest";
-import { toast } from "react-toastify";
-import languageModel from "../../../../../utils/languageModel";
+
+
 export default function   ProfileTab({
   profileInfo,
   updatedProfile,
@@ -20,12 +20,19 @@ export default function   ProfileTab({
       ? profileInfo?.phone
       : ""
   );
-  console.log(profileInfo,'profileInfoprofileInfo');
-  const [countryDropdown, setCountryDropdown] = useState(selectedCountries);
+  useEffect(()=>{
+    setName(profileInfo?.name)
+    setEmail(profileInfo?.email)
+    setPhone(profileInfo?.mobile)
+  
+  },[profileInfo])
+  console.log(profileInfo?.email,'profileInfoprofileInfo');
+
+  const [countryDropdown, setCountryDropdown] = useState(Country.getAllCountries());
   const [country, setCountry] = useState(null);
-  const [stateDropdown, setStateDropdown] = useState(selectedStates);
+  const [stateDropdown, setStateDropdown] = useState(State.getStatesOfCountry('IN'));
   const [state, setState] = useState(null);
-  const [cityDropdown, setCityDropdown] = useState(selectedCities);
+  const [cityDropdown, setCityDropdown] = useState(City.getCitiesOfState('IN', 'UP'));
   const [city, setcity] = useState(null);
   const [address, setAddress] = useState(profileInfo?.address);
   const [errors, setErrors] = useState(null);
@@ -34,48 +41,21 @@ export default function   ProfileTab({
   useEffect(() => {
     setLangCntnt(languageModel());
   }, []);
+  useEffect(()=>{console.log(country,'country');},[country])
+  useEffect(()=>{console.log(state,'state');},[state])
+  useEffect(()=>{console.log(state,'state');},[state])
   const getState = (value) => {
-    if (auth() && value) {
-      setCountry(value.id);
-      axios
-        .get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}api/user/state-by-country/${
-            value.id
-          }?token=${auth().access_token}`
-        )
-        .then((res) => {
-          setCityDropdown(null);
-          setStateDropdown(res.data && res.data.states);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      return false;
-    }
+    setStateDropdown(State.getStatesOfCountry(value['isoCode']))
+    setCountry(value)
   };
   const getcity = (value) => {
-    if (auth() && value) {
-      setState(value.id);
-      axios
-        .get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}api/user/city-by-state/${
-            value.id
-          }?token=${auth().access_token}`
-        )
-        .then((res) => {
-          setCityDropdown(res.data && res.data.cities);
-        })
-        .catch((err) => {
-          console.log(err.response);
-        });
-    } else {
-      return false;
-    }
-  };
+    console.log(value,'value',country);
+    setCityDropdown(City.getCitiesOfState(country['isoCode'], value['isoCode']))
+    // setState(value)
+  }
   const selectCity = (value) => {
-    if (auth() && value) {
-      setcity(value.id);
+    if ( value) {
+      setcity(value)
     }
   };
   // useEffect(() => {
@@ -117,36 +97,32 @@ export default function   ProfileTab({
     }
   };
   const updateProfile = async () => {
-    if (auth()) {
+    if (true) {
       const formData = new FormData();
       formData.append("name", name);
       formData.append("email", email);
-      formData.append("phone", phone);
+      formData.append("mobile", phone);
       formData.append("country", country);
       formData.append("address", address);
       formData.append("image", formImg);
       formData.append("state", state);
       formData.append("city", city);
-      await axios({
-        method: "post",
-        url: `${
-          process.env.NEXT_PUBLIC_BASE_URL
-        }api/user/update-profile?token=${auth().access_token}`,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
+      formData.append("pincode", '226019');
+console.log(formData,'formData');
+let id = '66a125927b76f73141806db6';
+      await apiRequest.updateProfile(formData,id)
+      .then((res) => {
+       
+        alert("success")
+        console.log(res,'result')
+        
+        
+        
       })
-        .then((res) => {
-          updatedProfile();
-          toast.success(res.data && res.data.notification);
-          if (res) {
-            setErrors(null);
-          }
-        })
-        .catch((err) => {
-          setErrors(err.response && err.response.data.errors);
-        });
-    } else {
-      return false;
+      .catch((err) => {
+        alert("unsuccess")
+        
+      });
     }
   };
   return (
